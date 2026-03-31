@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Pulso Bancario CR</title>
+<title>Pulso Bancario CR by Adriana Calderón | Sistema Bancario Costarricense</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
@@ -138,7 +138,10 @@ input[type=number]{background:#0e1e33;border:.5px solid rgba(255,255,255,.18);co
 .hm-wrap{overflow-y:auto;flex:1;min-height:0}
 .hm-grid{display:grid;gap:2px;margin-top:4px}
 .hm-h{background:#EEF4FA;padding:3px 2px;text-align:center;border-radius:2px;color:#2E75B6;font-size:var(--fs-xs);font-weight:700;line-height:1.3;word-break:break-word}
-.hm-lbl{color:#6a94bc;font-size:var(--fs-xs);display:flex;align-items:center;padding-left:2px}
+.hm-lbl{color:#6a94bc;font-size:var(--fs-xs);display:flex;align-items:center;padding-left:2px;transition:opacity .15s;}
+.hm-row-data{transition:opacity .15s;}
+.bl-row{transition:opacity .15s;}
+.sc-row{transition:opacity .15s;}
 .hm-c{padding:3px 2px;border-radius:2px;text-align:center;font-size:var(--fs-xs);font-weight:700;cursor:default}
 .c-opt{background:#D8EED4;color:#27500A}.c-nor{background:#BDD7EE;color:#1F3864}
 .c-pre{background:#FFF3CD;color:#856404}.c-inc{background:#FDDEDE;color:#842029}
@@ -177,6 +180,10 @@ input[type=number]{background:#0e1e33;border:.5px solid rgba(255,255,255,.18);co
 
 .leg{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:5px;}
 .leg-i{font-size:var(--fs-xs);display:flex;align-items:center;gap:3px;white-space:nowrap;}
+.leg-i.leg-clickable{cursor:pointer;border-radius:3px;padding:1px 4px 1px 2px;transition:opacity .15s,background .15s;user-select:none;}
+.leg-i.leg-clickable:hover{background:rgba(46,117,182,.12);}
+.leg-i.leg-faded{opacity:.22;}
+.leg-i.leg-active{font-weight:700;opacity:1;}
 .leg-d{width:9px;height:9px;border-radius:1px;display:inline-block;flex-shrink:0}
 canvas{display:block!important;}
 
@@ -259,9 +266,9 @@ canvas{display:block!important;}
 
 <div class="topbar">
   <div>
-    <div class="t-title" data-i18n="title">Pulso Bancario CR &nbsp;|&nbsp; Sistema Bancario Costarricense</div>
+    <div class="t-title" data-i18n="title">Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense</div>
     <div class="t-sub" data-i18n="subtitle">Datos SUGEF · Actualizado Feb 2026</div>
-    <div class="t-sub" style="color:#9AB8D4;margin-top:3px"><span style="color:#9AB8D4;font-weight:700">Analista:</span> Adriana Calderón &nbsp;<span style="color:#3a5a7a">·</span>&nbsp; adri.calderon92@gmail.com &nbsp;<span style="color:#3a5a7a">·</span>&nbsp; linkedin.com/in/adri-cm</div>
+    <div class="t-sub" style="color:#9AB8D4;margin-top:3px"><span style="color:#9AB8D4;font-weight:700">Contacto del Developer:</span> &nbsp;<a href="mailto:adri.calderon92@gmail.com" style="color:#BDD7EE;text-decoration:none">adri.calderon92@gmail.com</a> &nbsp;<span style="color:#3a5a7a">·</span>&nbsp; <a href="https://linkedin.com/in/adri-cm" target="_blank" style="color:#BDD7EE;text-decoration:none">linkedin.com/in/adri-cm</a></div>
   </div>
   <div class="controls">
     <select id="sel-periodo"></select>
@@ -305,9 +312,9 @@ canvas{display:block!important;}
     </div>
     <div class="chart-wrap"><canvas id="ch-rank"></canvas></div>
     <div id="sfn-badge" class="sfn-badge"></div>
-    <div class="leg" style="margin-top:5px">
-      <span class="leg-i"><span class="leg-d" style="background:#1F3864"></span><span data-i18n="state">Estatal</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#639922"></span><span data-i18n="private">Privado</span></span>
+    <div class="leg" style="margin-top:5px" id="leg-rank">
+      <span class="leg-i leg-clickable" data-filter="sector" data-val="Estatal"><span class="leg-d" style="background:#1F3864"></span><span data-i18n="state">Estatal</span></span>
+      <span class="leg-i leg-clickable" data-filter="sector" data-val="Privado"><span class="leg-d" style="background:#639922"></span><span data-i18n="private">Privado</span></span>
     </div>
   </div>
 
@@ -344,12 +351,12 @@ canvas{display:block!important;}
       </div>
     </div>
     <div class="chart-wrap-lg"><canvas id="ch-scatter"></canvas></div>
-    <div class="leg">
-      <span class="leg-i"><span class="leg-d" style="background:#1F3864"></span><span data-i18n="state">Estatal</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#639922"></span><span data-i18n="private">Privado</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#888780"></span><span data-i18n="system_sfn">Sistema (SFN)</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="alert_mora">Alerta mora &gt;3%</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#E8F0F7;border:1px solid #BDD7EE"></span><span data-i18n="high_return">Alta rentabilidad</span></span>
+    <div class="leg" id="leg-scatter">
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="Estatal"><span class="leg-d" style="background:#1F3864"></span><span data-i18n="state">Estatal</span></span>
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="Privado"><span class="leg-d" style="background:#639922"></span><span data-i18n="private">Privado</span></span>
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="SFN"><span class="leg-d" style="background:#888780"></span><span data-i18n="system_sfn">Sistema (SFN)</span></span>
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="alert_mora"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="alert_mora">Alerta mora &gt;3%</span></span>
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="high_return"><span class="leg-d" style="background:#E8F0F7;border:1px solid #BDD7EE"></span><span data-i18n="high_return">Alta rentabilidad</span></span>
     </div>
   </div>
 
@@ -357,9 +364,9 @@ canvas{display:block!important;}
     <div class="ql" data-i18n="ql_crec">04 — crecimiento YoY</div>
     <div class="bh"><div><div class="bt" data-i18n="bt_crec">Crecimiento cartera</div><div class="bs" data-i18n="bs_crec">Var. % vs mismo mes año anterior</div></div></div>
     <div class="chart-wrap-lg"><canvas id="ch-crec"></canvas></div>
-    <div class="leg">
-      <span class="leg-i"><span class="leg-d" style="background:#639922"></span><span data-i18n="positive">Positivo</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="negative">Negativo</span></span>
+    <div class="leg" id="leg-crec">
+      <span class="leg-i leg-clickable" data-filter="crec" data-val="positive"><span class="leg-d" style="background:#639922"></span><span data-i18n="positive">Positivo</span></span>
+      <span class="leg-i leg-clickable" data-filter="crec" data-val="negative"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="negative">Negativo</span></span>
     </div>
   </div>
 </div>
@@ -374,12 +381,12 @@ canvas{display:block!important;}
     <div class="ql" data-i18n="ql_heatmap">01 — heatmap regulatorio</div>
     <div class="bh"><div><div class="bt" data-i18n="bt_heatmap">Heatmap Regulatorio</div><div class="bs" data-i18n="bs_heatmap">Límites SUGEF · Verde óptimo · Amarillo precaución · Rojo incumplimiento · Gris informativo</div></div></div>
     <div class="hm-wrap"><div id="heatmap-container"></div></div>
-    <div class="leg" style="flex-shrink:0;margin-top:4px">
-      <span class="leg-i"><span class="leg-d" style="background:#D8EED4"></span><span style="color:#27500A" data-i18n="optimal">Óptimo</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#EEF4FA"></span><span style="color:#2E75B6" data-i18n="normal">Normal</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#FFF3CD"></span><span style="color:#856404" data-i18n="caution">Cautela</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#FDDEDE"></span><span style="color:#842029" data-i18n="breach">Incumplimiento</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#F4F6F9"></span><span style="color:#9AB8D4" data-i18n="info">Informativo</span></span>
+    <div class="leg" style="flex-shrink:0;margin-top:4px" id="leg-heatmap">
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-opt"><span class="leg-d" style="background:#D8EED4"></span><span style="color:#27500A" data-i18n="optimal">Óptimo</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-nor"><span class="leg-d" style="background:#EEF4FA"></span><span style="color:#2E75B6" data-i18n="normal">Normal</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-pre"><span class="leg-d" style="background:#FFF3CD"></span><span style="color:#856404" data-i18n="caution">Cautela</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-inc"><span class="leg-d" style="background:#FDDEDE"></span><span style="color:#842029" data-i18n="breach">Incumplimiento</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-inf"><span class="leg-d" style="background:#F4F6F9"></span><span style="color:#9AB8D4" data-i18n="info">Informativo</span></span>
     </div>
   </div>
 
@@ -388,11 +395,11 @@ canvas{display:block!important;}
     <div class="ql" data-i18n="ql_score">02 — scorecard FSI</div>
     <div class="bh" style="flex-shrink:0"><div><div class="bt" data-i18n="bt_score">Score de Solidez Financiera</div><div class="bs" data-i18n="bs_score">Escala 0–100 · Umbrales fijos · Click para expandir detalle</div></div></div>
     <div id="scorecard-list" style="overflow-y:auto;flex:1;min-height:0"></div>
-    <div class="leg" style="flex-shrink:0;margin-top:4px">
-      <span class="leg-i"><span class="leg-d" style="background:#D8EED4;border:.5px solid #27500A"></span><span data-i18n="opt75">Óptimo ≥75</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#EEF4FA;border:.5px solid #2E75B6"></span><span data-i18n="nor50">Normal 50–74</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#FFF3CD;border:.5px solid #856404"></span><span data-i18n="cau25">Cautela 25–49</span></span>
-      <span class="leg-i"><span class="leg-d" style="background:#FDDEDE;border:.5px solid #842029"></span><span data-i18n="ale0">Alerta &lt;25</span></span>
+    <div class="leg" style="flex-shrink:0;margin-top:4px" id="leg-scorecard">
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-opt"><span class="leg-d" style="background:#D8EED4;border:.5px solid #27500A"></span><span data-i18n="opt75">Óptimo ≥75</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-nor"><span class="leg-d" style="background:#EEF4FA;border:.5px solid #2E75B6"></span><span data-i18n="nor50">Normal 50–74</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-pre"><span class="leg-d" style="background:#FFF3CD;border:.5px solid #856404"></span><span data-i18n="cau25">Cautela 25–49</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-inc"><span class="leg-d" style="background:#FDDEDE;border:.5px solid #842029"></span><span data-i18n="ale0">Alerta &lt;25</span></span>
     </div>
   </div>
 
@@ -469,7 +476,7 @@ let LANG = 'es';
 // ── Internacionalización ──────────────────────────────────────────
 const I18N = {
   es:{
-    title:'Pulso Bancario CR &nbsp;|&nbsp; Sistema Bancario Costarricense',
+    title:'Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense',
     subtitle:'Datos SUGEF · Actualizado Feb 2026',
     all_sectors:'Todos los sectores', state:'Estatal', private:'Privado',
     kpi_roe:'ROE Sistema (SFN)', kpi_mora:'Morosidad Sistema (SFN)',
@@ -537,7 +544,7 @@ const I18N = {
     score_cat_label:'Score FSI',
   },
   en:{
-    title:'Pulso Bancario CR &nbsp;|&nbsp; Costa Rican Banking System',
+    title:'Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Costa Rican Banking System',
     subtitle:'SUGEF Data · Updated Feb 2026',
     all_sectors:'All sectors', state:'State-owned', private:'Private',
     kpi_roe:'System ROE (SFN)', kpi_mora:'System NPL Ratio (SFN)',
@@ -987,12 +994,15 @@ function renderRanking(){
     }
   });
   renderNotesH1();
+  applyRankHighlight();
+  applyRankCategoryFilter();
 }
 
 
 
 // ── Evolución ────────────────────────────────────────────────────
 let evolHighlight=null;
+let selectedBank=null; // banco globalmente seleccionado
 
 function applyEvolHighlight(){
   if(!chEvol) return;
@@ -1022,6 +1032,103 @@ function applyEvolHighlight(){
     if(evolHighlight===null){el.classList.remove('evol-active','evol-faded');}
     else if(ent===evolHighlight){el.classList.add('evol-active');el.classList.remove('evol-faded');}
     else{el.classList.add('evol-faded');el.classList.remove('evol-active');}
+  });
+}
+
+
+// ── Highlight global sincronizado ────────────────────────────────
+function setSelectedBank(ent){
+  selectedBank = selectedBank === ent ? null : ent;
+  // Sincronizar leyenda de evolución
+  evolHighlight = selectedBank;
+  applyEvolHighlight();
+  // Sincronizar gráficos de hoja 1
+  applyRankHighlight();
+  applyScatHighlight();
+  applyCrecHighlight();
+  // Sincronizar hoja 2
+  applyHeatmapHighlight();
+  applyScorecardHighlight();
+  applyBulletHighlight();
+}
+
+function applyRankHighlight(){
+  if(!chRank) return;
+  const ds = chRank.data.datasets[0];
+  const labels = chRank.data.labels;
+  if(selectedBank===null){
+    ds.backgroundColor = labels.map(e=>sectorCol(e));
+  } else {
+    ds.backgroundColor = labels.map(e=> e===selectedBank ? sectorCol(e) : sectorCol(e)+'38');
+  }
+  chRank.update('none');
+}
+
+function applyScatHighlight(){
+  if(!chScat) return;
+  chScat.data.datasets.forEach(ds=>{
+    const ent = ds.label;
+    const col = scatterCol(RAW_DATA.find(r=>r.Periodo===curPer&&r.Entidad===ent)||{Entidad:ent});
+    if(selectedBank===null){
+      ds.backgroundColor = col+'BB';
+      ds.borderColor = col;
+      ds.borderWidth = 1.5;
+    } else if(ent===selectedBank){
+      ds.backgroundColor = col+'EE';
+      ds.borderColor = col;
+      ds.borderWidth = 3;
+    } else {
+      ds.backgroundColor = col+'22';
+      ds.borderColor = col+'44';
+      ds.borderWidth = 1;
+    }
+  });
+  chScat.update('none');
+}
+
+function applyCrecHighlight(){
+  if(!chCrec) return;
+  const ds = chCrec.data.datasets[0];
+  const labels = chCrec.data.labels;
+  const vals = ds.data;
+  if(selectedBank===null){
+    ds.backgroundColor = vals.map(v=>(v||0)>=0?'#639922':'#E24B4A');
+  } else {
+    ds.backgroundColor = labels.map((e,i)=>{
+      const base = (vals[i]||0)>=0?'#639922':'#E24B4A';
+      return e===selectedBank ? base : base+'38';
+    });
+  }
+  chCrec.update('none');
+}
+
+function applyHeatmapHighlight(){
+  if(selectedBank===null){
+    document.querySelectorAll('.hm-lbl').forEach(el=>{ el.style.opacity=''; el.style.fontWeight=''; });
+    document.querySelectorAll('.hm-row-data').forEach(el=>{ el.style.opacity=''; });
+  } else {
+    document.querySelectorAll('.hm-lbl').forEach(el=>{
+      const isSelected = el.textContent.trim()===selectedBank;
+      el.style.opacity = isSelected ? '1' : '0.25';
+      el.style.fontWeight = isSelected ? '700' : '400';
+    });
+    document.querySelectorAll('.hm-row-data').forEach(el=>{
+      el.style.opacity = el.dataset.ent===selectedBank ? '1' : '0.2';
+    });
+  }
+}
+
+function applyScorecardHighlight(){
+  document.querySelectorAll('.sc-row').forEach(el=>{
+    if(selectedBank===null){ el.style.opacity=''; }
+    else { el.style.opacity = el.dataset.ent===selectedBank ? '1' : '0.2'; }
+  });
+}
+
+function applyBulletHighlight(){
+  document.querySelectorAll('.bl-row').forEach(el=>{
+    if(selectedBank===null){ el.style.opacity=''; }
+    else { el.style.opacity = el.dataset.ent===selectedBank ? '1' : '0.2'; }
   });
 }
 
@@ -1093,9 +1200,7 @@ function renderEvolucion(){
 
   legEl.querySelectorAll('.leg-evol-item').forEach(el=>{
     el.addEventListener('click',()=>{
-      const ent=el.dataset.ent;
-      evolHighlight=evolHighlight===ent?null:ent;
-      applyEvolHighlight();
+      setSelectedBank(el.dataset.ent);
     });
   });
 }
@@ -1132,6 +1237,8 @@ function renderCrecimiento(){
       layout:{padding:{right:45,left:5}}
     }
   });
+  applyCrecHighlight();
+  applyCrecCategoryFilter();
 }
 
 // ── Scatter ──────────────────────────────────────────────────────
@@ -1210,6 +1317,8 @@ function renderScatter(){
       }
     }
   });
+  applyScatHighlight();
+  applyScatCategoryFilter();
 }
 
 // ── Scorecard ────────────────────────────────────────────────────
@@ -1246,7 +1355,7 @@ function renderScorecard(){
     if(roaPts!=null)   det+='<div class="sc-det-row"><span>ROA <b>10%</b></span><span>'+fmt(roa,2)+'&nbsp;<b>'+roaLvl+'</b>&nbsp;+'+roaAp+'pts</span></div>';
     if(cartPts!=null)  det+='<div class="sc-det-row"><span>'+t('opt_cartera')+'/Dep <b>5%</b></span><span>'+cart.toFixed(1)+'%&nbsp;<b>'+cartLvl+'</b>&nbsp;+'+cartAp+'pts</span></div>';
     det+='</div>';
-    return '<div class="sc-row sc-expandable" onclick="this.classList.toggle(\'sc-open\')">'
+    return '<div class="sc-row sc-expandable" data-ent="'+d.Entidad+'" onclick="this.classList.toggle(\'sc-open\')" ondblclick="setSelectedBank(\''+d.Entidad+'\')" title="Doble click para resaltar">'
       +'<span style="font-size:9.5px;font-weight:700;color:'+tc+'">'+(i+1)+'</span>'
       +'<div><div style="font-size:9.5px;color:#1F3864;font-weight:700;margin-bottom:2px">'+d.Entidad+' <span style="font-size:8px;color:#9AB8D4;font-weight:400">&#9660;</span></div>'
       +'<div class="sc-track"><div class="sc-fill" style="width:'+sc+'%;background:'+bc+'"></div></div>'
@@ -1254,6 +1363,8 @@ function renderScorecard(){
       +'<span style="text-align:right;font-weight:700;color:'+tc+';font-size:11px">'+sc+'</span>'
       +'<div>'+scoreBadge(sc)+'</div></div>';
   }).join('');
+  applyScorecardHighlight();
+  applyScCategoryFilter();
 }
 
 // ── Bullet ───────────────────────────────────────────────────────
@@ -1265,13 +1376,14 @@ function renderBullet(){
     const col=v>=12?'#DEEAF1':v>=10?'#FFF3CD':'#FDDEDE';
     const brd=v>=12?'#2E75B6':v>=10?'#EF9F27':'#E24B4A';
     const tc=v>=12?'#27500A':v>=10?'#856404':'#842029';
-    return `<div class="bl-row">
+    return `<div class="bl-row" data-ent="${d.Entidad}" onclick="setSelectedBank('${d.Entidad}')" style="cursor:pointer" title="Click para resaltar">
       <span class="bl-lbl">${d.Entidad}</span>
       <div class="bl-wrap">
         <div class="bl-track"><div class="bl-fill" style="width:${pct}%;background:${col};border:.5px solid ${brd}"></div></div>
         <div class="bl-ref" style="left:${ref}%"></div></div>
       <span class="bl-val" style="color:${tc}">${v.toFixed(1)}%</span></div>`;
   }).join('');
+  applyBulletHighlight();
 }
 
 // ── DuPont Bancario ──────────────────────────────────────────────
@@ -1448,7 +1560,7 @@ function renderHeatmap(){
   allRows.forEach(function(d){
     var isSFN=d.Entidad==='SFN';
     var lblStyle=isSFN?'font-weight:700;color:#2E75B6':'';
-    h+='<div class="hm-lbl" style="'+lblStyle+'">'+d.Entidad+'</div>';
+    h+='<div class="hm-lbl" data-ent="'+d.Entidad+'" style="'+lblStyle+';cursor:pointer" onclick="setSelectedBank(\''+d.Entidad+'\')">'+(selectedBank===d.Entidad?'<b>'+d.Entidad+'</b>':d.Entidad)+'</div>';
     cols.forEach(function(c){
       var v=d[c];
       var sc;
@@ -1458,15 +1570,170 @@ function renderHeatmap(){
         sc=infoCol.indexOf(c)>=0?'c-inf':semCol(c,v,sfnEstim);
       }
       var disp=v!=null?v.toFixed(1)+'%':'—';
-      h+='<div class="hm-c '+sc+'" title="'+c+': '+(v!=null?v.toFixed(2):'—')+'">'+disp+'</div>';
+      h+='<div class="hm-c '+sc+' hm-row-data" data-ent="'+d.Entidad+'" title="'+c+': '+(v!=null?v.toFixed(2):'—')+'">'+disp+'</div>';
     });
   });
   h+='</div>';
   document.getElementById('heatmap-container').innerHTML=h;
+  applyHeatmapHighlight();
+}
+
+
+// ── Highlight por categoría dentro de cada gráfico ─────────────
+let rankFilter=null, scatFilter=null, crecFilter=null, hmFilter=null, scFilter=null;
+
+function applyRankCategoryFilter(){
+  if(!chRank) return;
+  const ds = chRank.data.datasets[0];
+  const labels = chRank.data.labels;
+  if(rankFilter===null){
+    ds.backgroundColor = labels.map(e=>sectorCol(e));
+  } else {
+    ds.backgroundColor = labels.map(e=>{
+      const sector = (RAW_DATA.find(r=>r.Periodo===curPer&&r.Entidad===e)||{}).Sector||'';
+      const col = sectorCol(e);
+      return sector===rankFilter ? col : col+'30';
+    });
+  }
+  chRank.update('none');
+  document.querySelectorAll('#leg-rank .leg-clickable').forEach(el=>{
+    if(rankFilter===null){el.classList.remove('leg-active','leg-faded');}
+    else if(el.dataset.val===rankFilter){el.classList.add('leg-active');el.classList.remove('leg-faded');}
+    else{el.classList.add('leg-faded');el.classList.remove('leg-active');}
+  });
+}
+
+function applyScatCategoryFilter(){
+  if(!chScat) return;
+  chScat.data.datasets.forEach(ds=>{
+    const ent = ds.label;
+    const d = RAW_DATA.find(r=>r.Periodo===curPer&&r.Entidad===ent)||{};
+    const col = scatterCol(d);
+    if(scatFilter===null){
+      ds.backgroundColor=col+'BB'; ds.borderColor=col; ds.borderWidth=1.5;
+    } else {
+      let match=false;
+      if(scatFilter==='Estatal') match=d.Sector==='Estatal';
+      else if(scatFilter==='Privado') match=d.Sector==='Privado';
+      else if(scatFilter==='SFN') match=ent==='SFN';
+      else if(scatFilter==='alert_mora') match=(d.IND_Morosidad||0)>3;
+      else if(scatFilter==='high_return') match=(d.ROE||0)>=10&&(d.IND_Morosidad||0)<=3;
+      ds.backgroundColor=match?col+'EE':col+'15';
+      ds.borderColor=match?col:col+'30';
+      ds.borderWidth=match?2.5:0.5;
+    }
+  });
+  chScat.update('none');
+  document.querySelectorAll('#leg-scatter .leg-clickable').forEach(el=>{
+    if(scatFilter===null){el.classList.remove('leg-active','leg-faded');}
+    else if(el.dataset.val===scatFilter){el.classList.add('leg-active');el.classList.remove('leg-faded');}
+    else{el.classList.add('leg-faded');el.classList.remove('leg-active');}
+  });
+}
+
+function applyCrecCategoryFilter(){
+  if(!chCrec) return;
+  const ds = chCrec.data.datasets[0];
+  const vals = ds.data;
+  const labels = chCrec.data.labels;
+  if(crecFilter===null){
+    ds.backgroundColor = vals.map(v=>(v||0)>=0?'#639922':'#E24B4A');
+  } else {
+    ds.backgroundColor = vals.map((v,i)=>{
+      const isPos=(v||0)>=0;
+      const base=isPos?'#639922':'#E24B4A';
+      const match=(crecFilter==='positive'&&isPos)||(crecFilter==='negative'&&!isPos);
+      return match?base:base+'30';
+    });
+  }
+  chCrec.update('none');
+  document.querySelectorAll('#leg-crec .leg-clickable').forEach(el=>{
+    if(crecFilter===null){el.classList.remove('leg-active','leg-faded');}
+    else if(el.dataset.val===crecFilter){el.classList.add('leg-active');el.classList.remove('leg-faded');}
+    else{el.classList.add('leg-faded');el.classList.remove('leg-active');}
+  });
+}
+
+function applyHmCategoryFilter(){
+  if(hmFilter===null){
+    document.querySelectorAll('#heatmap-container .hm-row-data').forEach(el=>{el.style.opacity='';el.style.outline='';});
+    document.querySelectorAll('#heatmap-container .hm-lbl').forEach(el=>{el.style.opacity='';});
+  } else {
+    document.querySelectorAll('#heatmap-container .hm-row-data').forEach(el=>{
+      const match=el.classList.contains(hmFilter);
+      el.style.opacity=match?'1':'0.12';
+      el.style.outline=match?'1.5px solid currentColor':'';
+    });
+    document.querySelectorAll('#heatmap-container .hm-lbl').forEach(el=>{el.style.opacity='0.4';});
+  }
+  document.querySelectorAll('#leg-heatmap .leg-clickable').forEach(el=>{
+    if(hmFilter===null){el.classList.remove('leg-active','leg-faded');}
+    else if(el.dataset.val===hmFilter){el.classList.add('leg-active');el.classList.remove('leg-faded');}
+    else{el.classList.add('leg-faded');el.classList.remove('leg-active');}
+  });
+}
+
+function applyScCategoryFilter(){
+  document.querySelectorAll('#scorecard-list .sc-row').forEach(el=>{
+    if(scFilter===null){el.style.opacity='';}
+    else{
+      // buscar el badge de categoría dentro del sc-row
+      const badge=el.querySelector('.b-opt,.b-nor,.b-pre,.b-inc');
+      const match=badge&&badge.classList.contains(scFilter);
+      el.style.opacity=match?'1':'0.15';
+    }
+  });
+  document.querySelectorAll('#leg-scorecard .leg-clickable').forEach(el=>{
+    if(scFilter===null){el.classList.remove('leg-active','leg-faded');}
+    else if(el.dataset.val===scFilter){el.classList.add('leg-active');el.classList.remove('leg-faded');}
+    else{el.classList.add('leg-faded');el.classList.remove('leg-active');}
+  });
+}
+
+// Inicializar click handlers para todas las leyendas estáticas
+function initLegendClicks(){
+  // Ranking: sector
+  document.querySelectorAll('#leg-rank .leg-clickable').forEach(el=>{
+    el.addEventListener('click',()=>{
+      rankFilter=rankFilter===el.dataset.val?null:el.dataset.val;
+      applyRankCategoryFilter();
+    });
+  });
+  // Scatter: categorías
+  document.querySelectorAll('#leg-scatter .leg-clickable').forEach(el=>{
+    el.addEventListener('click',()=>{
+      scatFilter=scatFilter===el.dataset.val?null:el.dataset.val;
+      applyScatCategoryFilter();
+    });
+  });
+  // Crecimiento: positivo/negativo
+  document.querySelectorAll('#leg-crec .leg-clickable').forEach(el=>{
+    el.addEventListener('click',()=>{
+      crecFilter=crecFilter===el.dataset.val?null:el.dataset.val;
+      applyCrecCategoryFilter();
+    });
+  });
+  // Heatmap: semáforo
+  document.querySelectorAll('#leg-heatmap .leg-clickable').forEach(el=>{
+    el.addEventListener('click',()=>{
+      hmFilter=hmFilter===el.dataset.val?null:el.dataset.val;
+      applyHmCategoryFilter();
+    });
+  });
+  // Scorecard: categorías FSI
+  document.querySelectorAll('#leg-scorecard .leg-clickable').forEach(el=>{
+    el.addEventListener('click',()=>{
+      scFilter=scFilter===el.dataset.val?null:el.dataset.val;
+      applyScCategoryFilter();
+    });
+  });
 }
 
 // ── Render all ───────────────────────────────────────────────────
 function renderAll(){
+  selectedBank=null;
+  evolHighlight=null;
+  rankFilter=null; scatFilter=null; crecFilter=null; hmFilter=null; scFilter=null;
   renderKPIs();
   renderRanking();
   renderEvolucion();
@@ -1498,6 +1765,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('sel-sector').onchange=e=>{curSec=e.target.value;renderAll();};
   document.getElementById('inp-tc').onchange=e=>{TC=+e.target.value||467;renderAll();};
   renderAll();
+  initLegendClicks();
 });
 </script>
 </body>
