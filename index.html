@@ -116,12 +116,20 @@ input[type=number]{background:#0e1e33;border:.5px solid rgba(255,255,255,.18);co
 .sfn-badge{display:flex;align-items:center;gap:6px;background:#EEF4FA;border:.5px solid #BDD7EE;border-radius:5px;padding:5px 8px;margin-top:6px}
 .sfn-badge-lbl{font-size:var(--fs-xs);color:#6a94bc;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
 .sfn-badge-val{font-size:var(--fs-md);font-weight:700;color:#1F3864}
-.sc-row{display:grid;grid-template-columns:16px 1fr 34px 56px;gap:3px;align-items:start;margin-bottom:2px;cursor:pointer}
+.sc-row{display:flex;flex-direction:column;margin-bottom:1px;cursor:pointer;border-radius:3px;padding:2px 4px;border:.5px solid #E8F0F7;transition:background .15s;}
+.sc-row:hover{background:#F4F8FC;}
 .sc-expandable .sc-detail{display:none;margin-top:3px;border-top:1px solid #D6E4F0;padding-top:2px}
 .sc-expandable.sc-open .sc-detail{display:block}
 .sc-det-row{display:flex;justify-content:space-between;font-size:var(--fs-xs);color:#4a6a8a;padding:1px 0;border-bottom:.5px solid #EEF4FA}
 .sc-det-row b{color:#1F3864}
-.sc-track{height:5px;background:#F4F6F9;border-radius:2px;overflow:hidden}
+.sc-header-row{display:grid;grid-template-columns:14px 1fr 6px clamp(24px,2.8vw,38px) 6px auto 10px;align-items:center;gap:2px;width:100%}
+.sc-rank{font-size:7.5px;font-weight:700;text-align:center}
+.sc-name{font-size:var(--fs-xs);font-weight:700;color:#1F3864;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.sc-sep{color:#BDD7EE;font-size:8px;text-align:center}
+.sc-score-num{font-size:var(--fs-sm);font-weight:800;text-align:right}
+.sc-cat-pill{font-size:8.5px;font-weight:700;padding:1px 5px;border-radius:6px;white-space:nowrap;justify-self:start;line-height:1.4;min-width:72px;text-align:center;display:inline-block}
+.sc-expand-icon{font-size:6px;color:#9AB8D4;text-align:right}
+.sc-track{height:3px;background:#F4F6F9;border-radius:2px;overflow:hidden;margin-top:2px}
 .sc-fill{height:100%;border-radius:2px;transition:width .5s}
 .badge{padding:1px 5px;border-radius:3px;font-size:var(--fs-xs);font-weight:700;white-space:nowrap}
 .b-opt{background:#D8EED4;color:#27500A}.b-nor{background:#EEF4FA;color:#2E75B6}
@@ -157,12 +165,12 @@ input[type=number]{background:#0e1e33;border:.5px solid rgba(255,255,255,.18);co
 .dp-comp .df{font-size:var(--fs-xs);color:#9AB8D4;margin-top:1px}
 .dp-layout{display:flex;gap:10px;width:100%;height:100%}
 .dp-tree-col{flex:1;min-width:0}
-.dp-analysis{width:clamp(140px,14vw,200px);flex-shrink:0;background:#EEF4FA;border-radius:6px;padding:6px 8px;overflow-y:auto;font-size:var(--fs-xs);color:#1F3864;line-height:1.3}
-.dp-analysis-title{font-weight:700;font-size:var(--fs-sm);color:#1F3864;margin-bottom:3px;border-bottom:.5px solid #BDD7EE;padding-bottom:2px}
-.dp-analysis-row{display:flex;justify-content:space-between;padding:1px 0;border-bottom:.5px solid #D6E4F0}
-.dp-analysis-row span:first-child{color:#6a94bc}
-.dp-analysis-row span:last-child{font-weight:700;color:#1F3864}
-.dp-insight{margin-top:3px;padding:3px 5px;border-radius:3px;font-size:var(--fs-xs);line-height:1.3;border-left:2px solid #5A8FC2;background:#E8F2FB;color:#1A3A5C}
+.dp-analysis{width:clamp(160px,16vw,240px);flex-shrink:0;background:#EEF4FA;border-radius:6px;padding:6px 8px;overflow-y:auto;font-size:var(--fs-md);color:#1F3864;line-height:1.5}
+.dp-analysis-title{font-weight:700;font-size:var(--fs-md);color:#1F3864;margin-bottom:4px;border-bottom:.5px solid #BDD7EE;padding-bottom:2px}
+.dp-analysis-row{display:grid;grid-template-columns:clamp(130px,13vw,175px) 1fr;gap:16px;padding:2px 0;border-bottom:.5px solid #D6E4F0;align-items:baseline}
+.dp-analysis-row span:first-child{color:#6a94bc;font-size:var(--fs-xs);line-height:1.3}
+.dp-analysis-row span:last-child{font-weight:700;color:#1F3864;text-align:left}
+.dp-insight{display:none}.dp-insight-combined{margin-top:3px;padding:4px 7px;border-radius:3px;font-size:var(--fs-xs);line-height:1.4;border-left:2px solid #5A8FC2;background:#E8F2FB;color:#1A3A5C}
 .dp-op{font-size:var(--fs-xl);font-weight:700;color:#BDD7EE}
 
 /* h2 blocks get tighter padding to maximise content area */
@@ -266,14 +274,14 @@ canvas{display:block!important;}
 
 <div class="topbar">
   <div>
-    <div class="t-title" data-i18n="title">Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense</div>
+    <div class="t-title" data-i18n="title">Pulso Bancario CR &nbsp;©&nbsp;Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense</div>
     <div class="t-sub" data-i18n="subtitle">Datos SUGEF · Actualizado Feb 2026</div>
-    <div class="t-sub" style="color:#9AB8D4;margin-top:3px"><span style="color:#9AB8D4;font-weight:700">Contacto del Developer:</span> &nbsp;<a href="mailto:adri.calderon92@gmail.com" style="color:#BDD7EE;text-decoration:none">adri.calderon92@gmail.com</a> &nbsp;<span style="color:#3a5a7a">·</span>&nbsp; <a href="https://linkedin.com/in/adri-cm" target="_blank" style="color:#BDD7EE;text-decoration:none">linkedin.com/in/adri-cm</a></div>
+    <div class="t-sub" style="color:#9AB8D4;margin-top:3px"><span style="color:#9AB8D4;font-style:italic">© Adriana Calderón</span>&nbsp;<span style="color:#3a5a7a">·</span>&nbsp;<a href="mailto:adri.calderon92@gmail.com" style="color:#BDD7EE;text-decoration:none">adri.calderon92@gmail.com</a>&nbsp;<span style="color:#3a5a7a">·</span>&nbsp;<a href="https://linkedin.com/in/adri-cm" target="_blank" style="color:#BDD7EE;text-decoration:none">linkedin.com/in/adri-cm</a></div>
   </div>
   <div class="controls">
     <select id="sel-periodo"></select>
     <select id="sel-sector"><option value="" data-i18n="all_sectors">Todos los sectores</option><option data-i18n="state">Estatal</option><option data-i18n="private">Privado</option></select>
-    <div class="tc-row"><span class="tc-lbl-sm">TC CRC/USD</span>
+    <div class="tc-row"><span class="tc-lbl-sm" data-i18n="tc_label">TC CRC/USD</span>
       <input type="number" id="inp-tc" value="467" min="300" max="900" step="1"></div>
     <div class="lang-toggle" id="lang-toggle" title="Switch language">
       <span id="lang-es" class="lang-active" onclick="setLang('es')">ES</span>
@@ -287,12 +295,12 @@ canvas{display:block!important;}
   <div class="kpi"><div class="kpi-lbl" data-i18n="kpi_mora">Morosidad Sistema (SFN)</div><div class="kpi-val" id="kv-mora">—</div><div class="kpi-d" id="kd-mora"></div></div>
   <div class="kpi"><div class="kpi-lbl" data-i18n="kpi_suf">Suficiencia Pat.</div><div class="kpi-val" id="kv-suf">—</div><div class="kpi-d" id="kd-suf"></div></div>
   <div class="kpi"><div class="kpi-lbl" data-i18n="kpi_efic">Productividad Gasto (SFN)</div><div class="kpi-val" id="kv-efic">—</div><div class="kpi-d" id="kd-efic"></div></div>
-  <div class="kpi kpi-alert"><div class="kpi-lbl" style="color:#EF9F27" data-i18n="kpi_alert">En Alerta</div><div class="kpi-val" id="kv-alerta">—</div><div class="kpi-d" id="kd-alerta" style="color:#EF9F27;font-size:8px"></div></div>
+  <div class="kpi kpi-alert"><div class="kpi-lbl" style="color:#EF9F27" data-i18n="kpi_alert">En Observación</div><div class="kpi-val" id="kv-alerta">—</div><div class="kpi-d" id="kd-alerta" style="color:#EF9F27;font-size:8px"></div></div>
 </div>
 
 <div class="tabs">
   <div class="tab active" onclick="switchTab(0)" data-i18n="tab0">Contextualización</div>
-  <div class="tab" onclick="switchTab(1)" data-i18n="tab1">Salud Regulatoria</div>
+  <div class="tab" onclick="switchTab(1)" data-i18n="tab1">Salud Financiera</div>
   <div class="tab" onclick="switchTab(2)" data-i18n="tab2">Notas Técnicas</div>
 </div>
 
@@ -338,7 +346,7 @@ canvas{display:block!important;}
   </div>
 
   <div class="sidebar h1-sidebar">
-    <div class="st" data-i18n="st_analyst">Comentarios del Analista</div>
+    <div class="st" data-i18n="st_analyst">Comentarios &nbsp;<span style="font-size:var(--fs-xs);font-weight:400;color:#4a6a8a;font-style:italic" data-i18n="analyst_byline">© Adriana Calderón</span></div>
     <div id="notes-h1"></div>
   </div>
 
@@ -355,7 +363,7 @@ canvas{display:block!important;}
       <span class="leg-i leg-clickable" data-filter="scat" data-val="Estatal"><span class="leg-d" style="background:#1F3864"></span><span data-i18n="state">Estatal</span></span>
       <span class="leg-i leg-clickable" data-filter="scat" data-val="Privado"><span class="leg-d" style="background:#639922"></span><span data-i18n="private">Privado</span></span>
       <span class="leg-i leg-clickable" data-filter="scat" data-val="SFN"><span class="leg-d" style="background:#888780"></span><span data-i18n="system_sfn">Sistema (SFN)</span></span>
-      <span class="leg-i leg-clickable" data-filter="scat" data-val="alert_mora"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="alert_mora">Alerta mora &gt;3%</span></span>
+      <span class="leg-i leg-clickable" data-filter="scat" data-val="alert_mora"><span class="leg-d" style="background:#E24B4A"></span><span data-i18n="alert_mora">Fuera de Rango &gt;3%</span></span>
       <span class="leg-i leg-clickable" data-filter="scat" data-val="high_return"><span class="leg-d" style="background:#E8F0F7;border:1px solid #BDD7EE"></span><span data-i18n="high_return">Alta rentabilidad</span></span>
     </div>
   </div>
@@ -379,13 +387,13 @@ canvas{display:block!important;}
   <!-- Cuadrante superior izquierdo: Heatmap regulatorio -->
   <div class="block h2-b1">
     <div class="ql" data-i18n="ql_heatmap">01 — heatmap regulatorio</div>
-    <div class="bh"><div><div class="bt" data-i18n="bt_heatmap">Heatmap Regulatorio</div><div class="bs" data-i18n="bs_heatmap">Límites SUGEF · Verde óptimo · Amarillo precaución · Rojo incumplimiento · Gris informativo</div></div></div>
+    <div class="bh"><div><div class="bt" data-i18n="bt_heatmap">Heatmap de Indicadores Financieros</div><div class="bs" data-i18n="bs_heatmap">Límites SUGEF · Verde satisfactorio · Amarillo observación · Rojo fuera de rango · Gris informativo</div></div></div>
     <div class="hm-wrap"><div id="heatmap-container"></div></div>
     <div class="leg" style="flex-shrink:0;margin-top:4px" id="leg-heatmap">
-      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-opt"><span class="leg-d" style="background:#D8EED4"></span><span style="color:#27500A" data-i18n="optimal">Óptimo</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-opt"><span class="leg-d" style="background:#D8EED4"></span><span style="color:#27500A" data-i18n="optimal">Satisfactorio</span></span>
       <span class="leg-i leg-clickable" data-filter="hm" data-val="c-nor"><span class="leg-d" style="background:#EEF4FA"></span><span style="color:#2E75B6" data-i18n="normal">Normal</span></span>
-      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-pre"><span class="leg-d" style="background:#FFF3CD"></span><span style="color:#856404" data-i18n="caution">Cautela</span></span>
-      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-inc"><span class="leg-d" style="background:#FDDEDE"></span><span style="color:#842029" data-i18n="breach">Incumplimiento</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-pre"><span class="leg-d" style="background:#FFF3CD"></span><span style="color:#856404" data-i18n="caution">Observación</span></span>
+      <span class="leg-i leg-clickable" data-filter="hm" data-val="c-inc"><span class="leg-d" style="background:#FDDEDE"></span><span style="color:#842029" data-i18n="breach">Fuera de Rango</span></span>
       <span class="leg-i leg-clickable" data-filter="hm" data-val="c-inf"><span class="leg-d" style="background:#F4F6F9"></span><span style="color:#9AB8D4" data-i18n="info">Informativo</span></span>
     </div>
   </div>
@@ -393,13 +401,13 @@ canvas{display:block!important;}
   <!-- Cuadrante inferior izquierdo: Score FSI -->
   <div class="block h2-b2">
     <div class="ql" data-i18n="ql_score">02 — scorecard FSI</div>
-    <div class="bh" style="flex-shrink:0"><div><div class="bt" data-i18n="bt_score">Score de Solidez Financiera</div><div class="bs" data-i18n="bs_score">Escala 0–100 · Umbrales fijos · Click para expandir detalle</div></div></div>
+    <div class="bh" style="flex-shrink:0"><div><div class="bt" data-i18n="bt_score">Score Salud Financiera Comparativa</div><div class="bs" data-i18n="bs_score">Escala 0–100 · Umbrales fijos · Click para expandir detalle</div></div></div>
     <div id="scorecard-list" style="overflow-y:auto;flex:1;min-height:0"></div>
     <div class="leg" style="flex-shrink:0;margin-top:4px" id="leg-scorecard">
-      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-opt"><span class="leg-d" style="background:#D8EED4;border:.5px solid #27500A"></span><span data-i18n="opt75">Óptimo ≥75</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-opt"><span class="leg-d" style="background:#D8EED4;border:.5px solid #27500A"></span><span data-i18n="opt75">Satisfactorio ≥75</span></span>
       <span class="leg-i leg-clickable" data-filter="sc" data-val="b-nor"><span class="leg-d" style="background:#EEF4FA;border:.5px solid #2E75B6"></span><span data-i18n="nor50">Normal 50–74</span></span>
-      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-pre"><span class="leg-d" style="background:#FFF3CD;border:.5px solid #856404"></span><span data-i18n="cau25">Cautela 25–49</span></span>
-      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-inc"><span class="leg-d" style="background:#FDDEDE;border:.5px solid #842029"></span><span data-i18n="ale0">Alerta &lt;25</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-pre"><span class="leg-d" style="background:#FFF3CD;border:.5px solid #856404"></span><span data-i18n="cau25">Observación 25–49</span></span>
+      <span class="leg-i leg-clickable" data-filter="sc" data-val="b-inc"><span class="leg-d" style="background:#FDDEDE;border:.5px solid #842029"></span><span data-i18n="ale0">Fuera de Rango &lt;25</span></span>
     </div>
   </div>
 
@@ -417,7 +425,7 @@ canvas{display:block!important;}
   <div class="block h2-b4">
     <div class="ql" style="flex-shrink:0" data-i18n="ql_analysis">04 — análisis por entidad</div>
     <div class="bh" style="flex-shrink:0"><div><div class="bt" data-i18n="bt_analysis">Análisis DuPont</div><div class="bs" data-i18n="bs_analysis">Métricas e insights · comparativo vs SFN</div></div></div>
-    <div id="dupont-analysis" style="font-size:9px;overflow-y:auto;flex:1;min-height:0"></div>
+    <div id="dupont-analysis" style="font-size:11px;overflow-y:auto;flex:1;min-height:0"></div>
   </div>
 
   <div id="bullet-list" style="display:none"></div>
@@ -432,12 +440,17 @@ canvas{display:block!important;}
     <div id="notes-h3"></div>
   </div>
   <div class="block" style="display:flex;flex-direction:column;overflow-y:auto">
-    <div class="st" data-i18n="st_score_guide">Interpretación del Score FSI</div>
+    <div class="st" data-i18n="st_score_guide">Interpretación del Score Salud Financiera Comparativa</div>
     <div id="notes-h2-ref"></div>
   </div>
   <div class="block" style="display:flex;flex-direction:column;overflow-y:auto">
     <div class="st" data-i18n="st_glossary">Glosario de Indicadores</div>
     <div id="notes-glosario"></div>
+    <div id="disclaimer-block" style="margin-top:auto;padding-top:10px;border-top:1px solid #1a2d4a;flex-shrink:0">
+      <div id="disclaimer-label" style="font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#6a8aaa;font-weight:700;margin-bottom:6px">Aviso Legal</div>
+      <div id="disclaimer-text" style="font-size:11px;color:#8aaccc;line-height:1.7;font-style:italic;background:#071020;border-left:2px solid #2a4a6a;border-radius:0 3px 3px 0;padding:8px 10px"></div>
+      <div style="margin-top:7px;font-size:10px;color:#6a8aaa;text-align:right">© Adriana Calderón · Pulso Bancario CR · 2026</div>
+    </div>
   </div>
 </div>
 </div>
@@ -476,38 +489,38 @@ let LANG = 'es';
 // ── Internacionalización ──────────────────────────────────────────
 const I18N = {
   es:{
-    title:'Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense',
+    title:'Pulso Bancario CR &nbsp;©&nbsp;Adriana Calderón&nbsp; |&nbsp; Sistema Bancario Costarricense',
     subtitle:'Datos SUGEF · Actualizado Feb 2026',
     all_sectors:'Todos los sectores', state:'Estatal', private:'Privado',
     kpi_roe:'ROE Sistema (SFN)', kpi_mora:'Morosidad Sistema (SFN)',
-    kpi_suf:'Suficiencia Pat.', kpi_efic:'Productividad Gasto (SFN)', kpi_alert:'En Alerta',
-    tab0:'Contextualización', tab1:'Salud Regulatoria', tab2:'Notas Técnicas',
+    kpi_suf:'Suficiencia Pat.', kpi_efic:'Productividad Gasto (SFN)', kpi_alert:'En Observación',
+    tab0:'Contextualización', tab1:'Salud Financiera', tab2:'Notas Técnicas',
     ql_rank:'01 — ranking', bt_rank:'Balance por banco',
     opt_activo:'Activo', opt_pasivo:'Pasivo', opt_patrimonio:'Patrimonio', opt_cartera:'Cartera',
     ql_evol:'02 — evolución temporal', bt_evol:'Tendencia por banco',
     opt_mora:'Morosidad', opt_tasa_act:'Tasa Activa', opt_tasa_pas:'Tasa Pasiva',
     opt_estim:'% Estimaciones', opt_suf:'Suficiencia Pat.',
-    st_analyst:'Comentarios del Analista',
+    st_analyst:'Comentarios', analyst_byline:'© Adriana Calderón',
     ql_scatter:'03 — scatter', bt_scatter:'Rentabilidad (ROE) vs Riesgo (Morosidad)',
     bs_scatter:'Tamaño de burbuja: Activo de Intermediación Financiera &nbsp;·&nbsp; Excluye CMB',
-    system_sfn:'Sistema (SFN)', alert_mora:'Alerta mora >3%', high_return:'Alta rentabilidad',
+    system_sfn:'Sistema (SFN)', alert_mora:'Fuera de Rango >3%', high_return:'Alta rentabilidad',
     ql_crec:'04 — crecimiento YoY', bt_crec:'Crecimiento cartera',
     bs_crec:'Var. % vs mismo mes año anterior',
     positive:'Positivo', negative:'Negativo',
-    ql_heatmap:'01 — heatmap regulatorio', bt_heatmap:'Heatmap Regulatorio',
-    bs_heatmap:'Límites SUGEF · Verde óptimo · Amarillo precaución · Rojo incumplimiento · Gris informativo',
-    optimal:'Óptimo', normal:'Normal', caution:'Cautela', breach:'Incumplimiento', info:'Informativo',
-    ql_score:'02 — scorecard FSI', bt_score:'Score de Solidez Financiera',
+    ql_heatmap:'01 — heatmap de indicadores financieros', bt_heatmap:'Heatmap de Indicadores Financieros',
+    bs_heatmap:'Límites SUGEF · Verde satisfactorio · Amarillo observación · Rojo fuera de rango · Gris informativo',
+    optimal:'Satisfactorio', normal:'Normal', caution:'Observación', breach:'Fuera de Rango', info:'Informativo',
+    ql_score:'02 — scorecard FSI', bt_score:'Score Salud Financiera Comparativa',
     bs_score:'Escala 0–100 · Umbrales fijos · Click para expandir detalle',
-    opt75:'Óptimo ≥75', nor50:'Normal 50–74', cau25:'Cautela 25–49', ale0:'Alerta <25',
+    opt75:'Satisfactorio ≥75', nor50:'Normal 50–74', cau25:'Observación 25–49', ale0:'Fuera de Rango <25',
     ql_dupont:'03 — árbol dupont bancario', bt_dupont:'Árbol DuPont Bancario — Descomposición ROE',
     bs_dupont:'ROE = ROA × Apalancamiento · Desglose por componentes',
     ql_analysis:'04 — análisis por entidad', bt_analysis:'Análisis DuPont',
     bs_analysis:'Métricas e insights · comparativo vs SFN',
-    st_dupont_guide:'Guía DuPont Bancario', st_score_guide:'Interpretación del Score FSI',
+    st_dupont_guide:'Guía DuPont Bancario', st_score_guide:'Interpretación del Score Salud Financiera Comparativa',
     st_glossary:'Glosario de Indicadores',
     // Textos dinámicos usados en JS
-    millions_usd:'Millones USD', tc_label:'TC',
+    millions_usd:'Millones USD', tc_label:'TC CRC/USD',
     evol_hint:'Click para resaltar · nuevamente para restablecer',
     sfn_system:'Sistema Financiero Nacional',
     sector_private:'Privado', sector_state:'Estatal',
@@ -516,12 +529,14 @@ const I18N = {
     scatter_mora_label:'Límite Mora: 3%',
     scatter_tooltip_mora:'Mora', scatter_tooltip_roe:'ROE', scatter_tooltip_actprod:'Activo Prod.',
     crec_label_pos:'Crecimiento positivo', crec_label_neg:'Crecimiento negativo',
-    score_optimal:'Óptimo', score_normal:'Normal', score_caution:'Cautela', score_alert:'Alerta',
-    score_good:'Bueno', score_breach:'Incumplimiento', score_low:'Bajo', score_very_low:'Muy bajo',
+    score_optimal:'Satisfactorio', score_normal:'Normal', score_caution:'Observación', score_alert:'Fuera de Rango',
+    score_good:'Bueno', score_breach:'Fuera de Rango', score_low:'Bajo', score_very_low:'Muy bajo',
     score_liquid:'Líquido', score_adjusted:'Ajustado', score_risk:'Riesgo',
     score_prod_high:'Muy productivo', score_prod_ok:'Productivo',
     score_prod_normal:'Normal', score_prod_low:'Bajo', score_prod_vlow:'Muy bajo',
     dupont_ref:'Ver Hoja 3 → Guía DuPont',
+    disclaimer_label:'Aviso Legal',
+    disclaimer_text:'Este análisis es de carácter exclusivamente informativo y educativo. Los datos provienen de fuentes públicas oficiales (SUGEF) y su veracidad es responsabilidad de las entidades reportantes. Los indicadores y scores presentados son metodologías propias de análisis comparativo y no representan una calificación oficial, recomendación de inversión, ni evaluación regulatoria de ninguna entidad financiera. El autor no asume ninguna responsabilidad por decisiones tomadas con base en este contenido.',
     // Notas dinámicas
     highest:'Mayor', lowest:'Menor', public_sector:'Público', private_sector:'Privado',
     n_highest_x:'Mayor {0}: {1} — ${2}M USD',
@@ -532,7 +547,7 @@ const I18N = {
     n_mora_highest:'Mayor morosidad: {0} — {1}',
     n_crec_highest:'Mayor crecimiento cartera: {0} YoY {1}',
     n_crec_lowest:'Mayor contracción cartera: {0} YoY {1}',
-    n_caution_zone:' · zona cautela',
+    n_caution_zone:' · zona observación',
     n_highest_suf:'Mayor: {0} {1}', n_lowest_suf:'Menor: {0} {1}',
     n_highest_mora:'Mayor mora: {0} {1}', n_lowest_roa:'Menor ROA: {0} {1}',
     n_lowest_liquid:'Menor ratio (más líquido): {0} {1}%',
@@ -544,52 +559,54 @@ const I18N = {
     score_cat_label:'Score FSI',
   },
   en:{
-    title:'Pulso Bancario CR &nbsp;by Adriana Calderón&nbsp; |&nbsp; Costa Rican Banking System',
+    title:'Pulso Bancario CR &nbsp;©&nbsp;Adriana Calderón&nbsp; |&nbsp; Costa Rican Banking System',
     subtitle:'SUGEF Data · Updated Feb 2026',
     all_sectors:'All sectors', state:'State-owned', private:'Private',
     kpi_roe:'System ROE (SFN)', kpi_mora:'System NPL Ratio (SFN)',
-    kpi_suf:'Capital Adequacy', kpi_efic:'Cost Productivity (SFN)', kpi_alert:'On Alert',
-    tab0:'Overview', tab1:'Regulatory Health', tab2:'Technical Notes',
+    kpi_suf:'Capital Adequacy', kpi_efic:'Cost Productivity (SFN)', kpi_alert:'Under Observation',
+    tab0:'Overview', tab1:'Financial Health', tab2:'Technical Notes',
     ql_rank:'01 — ranking', bt_rank:'Balance sheet by bank',
     opt_activo:'Total Assets', opt_pasivo:'Total Liabilities', opt_patrimonio:'Equity', opt_cartera:'Loan Portfolio',
     ql_evol:'02 — time trend', bt_evol:'Trend by bank',
     opt_mora:'NPL Ratio', opt_tasa_act:'Lending Rate', opt_tasa_pas:'Deposit Rate',
     opt_estim:'% Loan Loss Provisions', opt_suf:'Capital Adequacy',
-    st_analyst:'Analyst Commentary',
+    st_analyst:'Commentary', analyst_byline:'© Adriana Calderón',
     ql_scatter:'03 — scatter', bt_scatter:'Profitability (ROE) vs Risk (NPL Ratio)',
     bs_scatter:'Bubble size: Productive Assets &nbsp;·&nbsp; Excludes CMB',
-    system_sfn:'System (SFN)', alert_mora:'NPL alert >3%', high_return:'High profitability',
+    system_sfn:'System (SFN)', alert_mora:'Out of Range >3%', high_return:'High profitability',
     ql_crec:'04 — YoY growth', bt_crec:'Loan portfolio growth',
     bs_crec:'% change vs same month prior year',
     positive:'Positive', negative:'Negative',
-    ql_heatmap:'01 — regulatory heatmap', bt_heatmap:'Regulatory Heatmap',
-    bs_heatmap:'SUGEF thresholds · Green optimal · Yellow caution · Red breach · Gray informational',
-    optimal:'Optimal', normal:'Normal', caution:'Caution', breach:'Breach', info:'Informational',
-    ql_score:'02 — FSI scorecard', bt_score:'Financial Soundness Score',
+    ql_heatmap:'01 — financial indicators heatmap', bt_heatmap:'Financial Indicators Heatmap',
+    bs_heatmap:'SUGEF thresholds · Green satisfactory · Yellow observation · Red out of range · Gray informational',
+    optimal:'Satisfactory', normal:'Normal', caution:'Under Observation', breach:'Out of Range', info:'Informational',
+    ql_score:'02 — FSI scorecard', bt_score:'Comparative Financial Health Score',
     bs_score:'Scale 0–100 · Fixed thresholds · Click to expand detail',
-    opt75:'Optimal ≥75', nor50:'Normal 50–74', cau25:'Caution 25–49', ale0:'Alert <25',
+    opt75:'Satisfactory ≥75', nor50:'Normal 50–74', cau25:'Under Observation 25–49', ale0:'Out of Range <25',
     ql_dupont:'03 — dupont tree', bt_dupont:'Banking DuPont Tree — ROE Decomposition',
     bs_dupont:'ROE = ROA × Leverage · Breakdown by component',
     ql_analysis:'04 — entity analysis', bt_analysis:'DuPont Analysis',
     bs_analysis:'Metrics & insights · benchmark vs SFN',
-    st_dupont_guide:'Banking DuPont Guide', st_score_guide:'FSI Score Interpretation',
+    st_dupont_guide:'Banking DuPont Guide', st_score_guide:'Comparative Financial Health Score Interpretation',
     st_glossary:'Indicator Glossary',
     // Dynamic texts used in JS
-    millions_usd:'USD Millions', tc_label:'ER',
+    millions_usd:'USD Millions', tc_label:'Fx Rate CRC/USD',
     evol_hint:'Click to highlight · click again to reset',
     sfn_system:'National Financial System',
     sector_private:'Private', sector_state:'State-owned',
-    rank_sub_label:'USD Millions · ER',
+    rank_sub_label:'USD Millions · Fx Rate',
     scatter_zone:'High profitability (ROE >12% · NPL <3%)',
     scatter_mora_label:'NPL Limit: 3%',
     scatter_tooltip_mora:'NPL', scatter_tooltip_roe:'ROE', scatter_tooltip_actprod:'Prod. Assets',
     crec_label_pos:'Positive growth', crec_label_neg:'Negative growth',
-    score_optimal:'Optimal', score_normal:'Normal', score_caution:'Caution', score_alert:'Alert',
-    score_good:'Good', score_breach:'Breach', score_low:'Low', score_very_low:'Very low',
+    score_optimal:'Satisfactory', score_normal:'Normal', score_caution:'Under Observation', score_alert:'Out of Range',
+    score_good:'Good', score_breach:'Out of Range', score_low:'Low', score_very_low:'Very low',
     score_liquid:'Liquid', score_adjusted:'Adjusted', score_risk:'Risk',
     score_prod_high:'Highly productive', score_prod_ok:'Productive',
     score_prod_normal:'Normal', score_prod_low:'Low', score_prod_vlow:'Very low',
     dupont_ref:'See Sheet 3 → DuPont Guide',
+    disclaimer_label:'Legal Notice',
+    disclaimer_text:'This analysis is exclusively informational and educational in nature. Data comes from official public sources (SUGEF) and their accuracy is the responsibility of the reporting entities. The indicators and scores presented are proprietary comparative analysis methodologies and do not represent an official rating, investment recommendation, or regulatory assessment of any financial institution. The author assumes no responsibility for decisions made based on this content.',
     // Dynamic notes
     highest:'Highest', lowest:'Lowest', public_sector:'State-owned', private_sector:'Private',
     n_highest_x:'Highest {0}: {1} — ${2}M USD',
@@ -600,7 +617,7 @@ const I18N = {
     n_mora_highest:'Highest NPL: {0} — {1}',
     n_crec_highest:'Highest portfolio growth: {0} YoY {1}',
     n_crec_lowest:'Largest portfolio contraction: {0} YoY {1}',
-    n_caution_zone:' · caution zone',
+    n_caution_zone:' · observation zone',
     n_highest_suf:'Highest: {0} {1}', n_lowest_suf:'Lowest: {0} {1}',
     n_highest_mora:'Highest NPL: {0} {1}', n_lowest_roa:'Lowest ROA: {0} {1}',
     n_lowest_liquid:'Lowest ratio (most liquid): {0} {1}%',
@@ -651,7 +668,7 @@ const pPrev = () => {
 };
 const avg = (arr,f) => {const v=arr.map(d=>d[f]).filter(x=>x!=null);return v.length?v.reduce((a,b)=>a+b)/v.length:null;};
 const arrowHtml = (v,inv=false) => {
-  if(v==null||Math.abs(v)<0.001) return '<span class="neu">— sin cambio</span>';
+  if(v==null||Math.abs(v)<0.001) return '<span class="neu">— '+(LANG==="en"?"no change":"sin cambio")+'</span>';
   const pos=inv?(v<0):(v>0);
   return `<span class="${pos?'up':'dn'}">${v>0?'▲':'▼'} ${Math.abs(v).toFixed(2)}pp vs periodo ant.</span>`;
 };
@@ -710,7 +727,9 @@ function renderKPIs(){
   const suf=totalActivo>0?cur.reduce(function(s,d){return s+(d.SuficienciaP!=null?(d.SuficienciaP*(d.BAL_ActiTotal||0)):0);},0)/totalActivo:null;
   const efic = sfnRow?sfnRow.IND_Eficiencia:null;
   const eficP= sfnPrev?sfnPrev.IND_Eficiencia:null;
-  const alerts=cur.filter(d=>(d.IND_Morosidad||0)>3||(d.SuficienciaP!=null&&d.SuficienciaP<10));
+  // Bancos Fuera de Rango: mora >3% o suficiencia patrimonial <10%
+  // Bancos en Observación: score FSI entre 25 y 49 (categoría Observación del Score Salud Financiera)
+  const alerts=cur.map(d=>({...d,_sc:scoreFSI(d)})).filter(d=>d._sc!=null&&d._sc>=25&&d._sc<50);
 
   // Para suficiencia: buscar el último periodo donde el valor promedio fue diferente
   let sufP=null, sufPeriodo='';
@@ -727,13 +746,32 @@ function renderKPIs(){
   document.getElementById('kv-mora').textContent = fmt(mora);
   document.getElementById('kv-suf').textContent  = fmt(suf);
   document.getElementById('kv-efic').textContent = efic?efic.toFixed(2)+'x':'—';
-  document.getElementById('kv-alerta').textContent= alerts.length;
-  document.getElementById('kd-alerta').textContent= alerts.map(d=>d.Entidad).join(' · ');
+  document.getElementById('kv-alerta').textContent= alerts.length || '—';
+  var privCount = alerts.filter(d=>d.Sector==='Privado').length;
+  var estatCount = alerts.filter(d=>d.Sector==='Estatal').length;
+  var sectorLabel = '';
+  if(alerts.length>0){
+    if(privCount>0 && estatCount===0) sectorLabel=LANG==='en'?'Private banks':'Bancos privados';
+    else if(estatCount>0 && privCount===0) sectorLabel=LANG==='en'?'State-owned banks':'Bancos estatales';
+    else sectorLabel=LANG==='en'?'Mixed':'Mixtos';
+  } else { sectorLabel=LANG==='en'?'All within range':'Todas dentro de rango'; }
+  document.getElementById('kd-alerta').textContent= sectorLabel;
   document.getElementById('kd-roe').innerHTML  = arrowHtml(roe&&roeP?roe-roeP:null);
-  document.getElementById('kd-mora').innerHTML = arrowHtml(mora&&moraP?mora-moraP:null,true);
+  const idxMora=periodos.indexOf(curPer);
+  const prevPerMora=idxMora>0?periodos[idxMora-1]:null;
+  if(mora!=null&&moraP!=null){
+    const diffMora=mora-moraP;
+    if(Math.abs(diffMora)<0.001){
+      document.getElementById('kd-mora').innerHTML='<span class="neu">— '+(LANG==="en"?"no change":"sin cambio")+' vs periodo ant.</span>';
+    } else {
+      document.getElementById('kd-mora').innerHTML=arrowHtml(diffMora,true);
+    }
+  } else {
+    document.getElementById('kd-mora').innerHTML='<span class="neu">— '+(LANG==="en"?"no change":"sin cambio")+' vs periodo ant.</span>';
+  }
   document.getElementById('kd-suf').innerHTML  = sufP!=null
     ? arrowHtml(suf-sufP)+`<span class="neu" style="font-size:9px;margin-left:3px">vs ${sufPeriodo}</span>`
-    : '<span class="neu">— sin cambio</span>';
+    : '<span class="neu">— '+(LANG==="en"?"no change":"sin cambio")+'</span>';
   document.getElementById('kd-efic').innerHTML = (eficP!=null&&efic!=null) ? arrowHtml(efic-eficP) : '<span class="neu">— SFN</span>';
   document.getElementById('ranking-sub').textContent = `${t('rank_sub_label')} ${TC}`;
 }
@@ -789,7 +827,7 @@ function renderNotesH1(){
   if(sfnRow&&sfnRow.CrecCartRelativo!=null){ var crecSFN=sfnRow.CrecCartRelativo; var crecLbl=en?(crecSFN>0?'systemic credit expansion':'system-level credit deceleration'):(crecSFN>0?'expansión del crédito sistémico':'desaceleración crediticia a nivel sistema'); h+=`<div class="note">${en?'SFN portfolio growth':'Crecimiento cartera SFN'}: <strong>${fmt(crecSFN,1)}</strong> — ${crecLbl}</div>`; }
 
   if(avgSpread!=null&&avgMora!=null&&avgROA!=null){
-    var relSpMora=en?(avgSpread>=4&&avgMora<=2?'virtuous cycle: wide spread with controlled NPLs, optimal intermediation conditions':avgSpread>=4&&avgMora>2?'alert: favorable spread but rising NPLs, monitor credit quality':avgSpread<4&&avgMora<=2?'margin pressure with healthy portfolio, possible rate competition':'double pressure: compressed margins and high NPLs, adverse cycle signal'):(avgSpread>=4&&avgMora<=2?'ciclo virtuoso: spread amplio con mora controlada, condiciones óptimas de intermediación':avgSpread>=4&&avgMora>2?'alerta: spread favorable pero mora en ascenso, vigilar calidad crediticia':avgSpread<4&&avgMora<=2?'presión de márgenes con cartera sana, posible competencia de tasas':'presión doble: márgenes comprimidos y mora elevada, señal de ciclo adverso');
+    var relSpMora=en?(avgSpread>=4&&avgMora<=2?'virtuous cycle: wide spread with controlled NPLs, optimal intermediation conditions':avgSpread>=4&&avgMora>2?'alert: favorable spread but rising NPLs, monitor credit quality':avgSpread<4&&avgMora<=2?'margin pressure with healthy portfolio, possible rate competition':'double pressure: compressed margins and high NPLs, adverse cycle signal'):(avgSpread>=4&&avgMora<=2?'ciclo virtuoso: spread amplio con mora controlada, condiciones satisfactorias de intermediación':avgSpread>=4&&avgMora>2?'en observación: spread favorable pero mora en ascenso, vigilar calidad crediticia':avgSpread<4&&avgMora<=2?'presión de márgenes con cartera sana, posible competencia de tasas':'presión doble: márgenes comprimidos y mora elevada, señal de ciclo adverso');
     var bancosSpMora=cur.filter(function(d){return d.Spread!=null&&d.IND_Morosidad!=null&&d.Spread>=4&&d.IND_Morosidad>2;}).map(function(d){return d.Entidad;});
     var spMoraEnt=bancosSpMora.length>0?(en?' · Pattern observed in: ':' · Patrón observado en: ')+'<strong>'+bancosSpMora.join(', ')+'</strong>':(en?' · Pattern not observed in any individual entity':' · No se observa este patrón en ninguna entidad individual');
     h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'Spread–NPL Relationship:':'Relación Spread-Mora:'} ${relSpMora}${spMoraEnt}</div>`;
@@ -812,7 +850,7 @@ function renderNotesH1(){
   alerts.forEach(function(d){
     if((d.IND_Morosidad||0)>3&&d.Entidad===topMoraEnt) return;
     var msg=(d.IND_Morosidad||0)>3?(en?'NPL ':'mora ')+fmt(d.IND_Morosidad):(en?'capital adequacy ':'suficiencia ')+fmt(d.SuficienciaP);
-    h+=`<div class="note note-a"><strong>${d.Entidad}</strong> ${en?'on alert —':'en alerta —'} ${msg}</div>`;
+    h+=`<div class="note note-a"><strong>${d.Entidad}</strong> ${en?'out of range —':'fuera de rango —'} ${msg}</div>`;
   });
   if(!h) h=`<div class="note">${en?'No active regulatory alerts.':'Sin alertas regulatorias activas.'}</div>`;
   document.getElementById('notes-h1').innerHTML=h;
@@ -838,40 +876,40 @@ function renderNotesH2(){
   const avgROE2=avg(cur,'ROE');
   let h='';
 
-  h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${en?'Financial Soundness Score (FSI)':'Score de Solidez Financiera (FSI)'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864">${en?'Composite index 0–100 summarizing the financial health of each entity. Categories: <strong>Optimal</strong> ≥75 · <strong>Normal</strong> 50–74 · <strong>Caution</strong> 25–49 · <strong>Alert</strong> <25':'Índice compuesto 0–100 que resume la salud financiera de cada entidad. Categorías: <strong>Óptimo</strong> ≥75 · <strong>Normal</strong> 50–74 · <strong>Cautela</strong> 25–49 · <strong>Alerta</strong> &lt;25'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${en?'Comparative Financial Health Score (FSI)':'Score Salud Financiera Comparativa (FSI)'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864">${en?'Composite index 0–100 summarizing the financial health of each entity. Categories: <strong>Satisfactory</strong> ≥75 · <strong>Normal</strong> 50–74 · <strong>Under Observation</strong> 25–49 · <strong>Out of Range</strong> <25':'Índice compuesto 0–100 que resume la salud financiera de cada entidad. Categorías: <strong>Satisfactorio</strong> ≥75 · <strong>Normal</strong> 50–74 · <strong>Observación</strong> 25–49 · <strong>Fuera de Rango</strong> &lt;25'}</div>`;
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'① ROE · Weight 25%':'① ROE · Peso 25%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on equity. Optimal: >13% · Normal: 8–13% · Low: 0–8% · Negative: <0%':'Retorno sobre patrimonio. Óptimo: >13% · Normal: 8–13% · Bajo: 0–8% · Negativo: <0%'}</div>`;
-  if(avgROE2!=null){ var roeLbl2=en?(avgROE2>=13?'optimal profitability':avgROE2>=8?'normal profitability':avgROE2>=0?'low profitability':'negative — concern'):(avgROE2>=13?'rentabilidad óptima':avgROE2>=8?'rentabilidad normal':avgROE2>=0?'rentabilidad baja':'negativo — señal de alerta'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROE2,2)}</strong> — ${roeLbl2}</div>`; }
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on equity. Optimal: >13% · Normal: 8–13% · Low: 0–8% · Negative: <0%':'Retorno sobre patrimonio. Satisfactorio: >13% · Normal: 8–13% · Bajo: 0–8% · Negativo: <0%'}</div>`;
+  if(avgROE2!=null){ var roeLbl2=en?(avgROE2>=13?'satisfactory profitability':avgROE2>=8?'normal profitability':avgROE2>=0?'low profitability':'negative — under observation'):(avgROE2>=13?'rentabilidad satisfactoria':avgROE2>=8?'rentabilidad normal':avgROE2>=0?'rentabilidad baja':'negativo — en observación'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROE2,2)}</strong> — ${roeLbl2}</div>`; }
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'② Capital Adequacy · Weight 30%':'② Suficiencia Patrimonial · Peso 30%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Loss absorption capacity. SUGEF minimum: 10% · Caution: 10–12% · Good: 12–14% · Optimal: ≥14%':'Capacidad de absorber pérdidas. Mínimo SUGEF: 10% · Cautela: 10–12% · Bueno: 12–14% · Óptimo: ≥14%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Loss absorption capacity. SUGEF minimum: 10% · Under Observation: 10–12% · Good: 12–14% · Satisfactory: ≥14%':'Capacidad de absorber pérdidas. Mínimo SUGEF: 10% · Observación: 10–12% · Bueno: 12–14% · Satisfactorio: ≥14%'}</div>`;
   if(topSuf) h+=`<div class="note note-g">${en?'Highest':'Mayor'}: <strong>${topSuf.Entidad}</strong> ${fmt(topSuf.SuficienciaP)}</div>`;
-  if(botSuf){ var bsClass=botSuf.SuficienciaP<12?' note-w':''; h+=`<div class="note${bsClass}">${en?'Lowest':'Menor'}: <strong>${botSuf.Entidad}</strong> ${fmt(botSuf.SuficienciaP)}${botSuf.SuficienciaP<12?(en?' · caution zone':' · zona precaución'):''}</div>`; }
+  if(botSuf){ var bsClass=botSuf.SuficienciaP<12?' note-w':''; h+=`<div class="note${bsClass}">${en?'Lowest':'Menor'}: <strong>${botSuf.Entidad}</strong> ${fmt(botSuf.SuficienciaP)}${botSuf.SuficienciaP<12?(en?' · caution zone':' · zona en observación'):''}</div>`; }
   if(avgSuf!=null){ var sfLbl=en?(avgSuf>=14?'well-capitalized system':avgSuf>=12?'adequate capitalization':'limited capital buffer'):(avgSuf>=14?'sistema bien capitalizado':avgSuf>=12?'capitalización adecuada':'colchón de capital limitado'); h+=`<div class="note">${en?'Weighted system avg.':'Promedio ponderado sistema'}: <strong>${fmt(avgSuf)}</strong> — ${sfLbl}</div>`; }
   inc.forEach(function(d){ h+=`<div class="note note-a"><strong>${d.Entidad}</strong> ${en?'below SUGEF minimum —':'incumple mínimo SUGEF —'} ${fmt(d.SuficienciaP)}</div>`; });
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'③ NPL Ratio · Weight 20%':'③ Morosidad · Peso 20%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Portfolio quality. Optimal: <1.5% · Normal: 1.5–2.5% · Caution: 2.5–3% · Alert: >3%':'Calidad de cartera. Óptimo: &lt;1.5% · Normal: 1.5–2.5% · Cautela: 2.5–3% · Alerta: &gt;3%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Portfolio quality. Satisfactory: <1.5% · Normal: 1.5–2.5% · Under Observation: 2.5–3% · Out of Range: >3%':'Calidad de cartera. Satisfactorio: &lt;1.5% · Normal: 1.5–2.5% · Observación: 2.5–3% · Fuera de Rango: &gt;3%'}</div>`;
   if(botMora) h+=`<div class="note note-g">${en?'Best quality':'Mejor calidad'}: <strong>${botMora.Entidad}</strong> ${fmt(botMora.IND_Morosidad)}</div>`;
   if(topMora){ var tmClass=(topMora.IND_Morosidad||0)>3?' note-a':' note-w'; h+=`<div class="note${tmClass}">${en?'Highest NPL':'Mayor mora'}: <strong>${topMora.Entidad}</strong> ${fmt(topMora.IND_Morosidad)}</div>`; }
-  if(avgMora!=null){ var moraLbl=en?(avgMora<=1.5?'healthy portfolio':avgMora<=2.5?'normal quality':avgMora<=3?'caution':'systemic alert'):(avgMora<=1.5?'cartera sana':avgMora<=2.5?'calidad normal':avgMora<=3?'precaución':'alerta sistémica'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgMora)}</strong> — ${moraLbl}</div>`; }
+  if(avgMora!=null){ var moraLbl=en?(avgMora<=1.5?'healthy portfolio':avgMora<=2.5?'normal quality':avgMora<=3?'caution':'out of range systemically'):(avgMora<=1.5?'cartera sana':avgMora<=2.5?'calidad normal':avgMora<=3?'en observación':'fuera de rango sistémico'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgMora)}</strong> — ${moraLbl}</div>`; }
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'④ Loan Loss Provision Coverage · Weight 10%':'④ Cobertura de Estimaciones · Peso 10%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Provisions vs. NPL portfolio >90d. Higher = better coverage. Optimal: ≥3x · Normal: 2–3x · Caution: 1–2x · Low: <1x':'Mide estimaciones (provisiones) sobre cartera morosa &gt;90 días y cobro judicial. Mayor valor = mejor cobertura ante riesgo crediticio. Óptimo: ≥3x · Normal: 2–3x · Cautela: 1–2x · Bajo: &lt;1x'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Provisions vs. NPL portfolio >90d. Higher = better coverage. Satisfactory: ≥3x · Normal: 2–3x · Under Observation: 1–2x · Low: <1x':'Mide estimaciones (provisiones) sobre cartera morosa &gt;90 días y cobro judicial. Mayor valor = mejor cobertura ante riesgo crediticio. Satisfactorio: ≥3x · Normal: 2–3x · Observación: 1–2x · Bajo: &lt;1x'}</div>`;
   if(topEstim) h+=`<div class="note note-g">${en?'Highest coverage':'Mayor cobertura'}: <strong>${topEstim.Entidad}</strong> ${fmt(topEstim.IND_PctEstimaciones,2)}x</div>`;
   if(botEstim){ var teClass=botEstim.IND_PctEstimaciones<1?' note-a':botEstim.IND_PctEstimaciones<2?' note-w':''; h+=`<div class="note${teClass}">${en?'Lowest coverage':'Menor cobertura'}: <strong>${botEstim.Entidad}</strong> ${fmt(botEstim.IND_PctEstimaciones,2)}x${botEstim.IND_PctEstimaciones<1?(en?' · insufficient coverage':' · cobertura insuficiente'):''}</div>`; }
-  if(avgEstim!=null){ var estimLbl=en?(avgEstim>=3?'optimal system coverage':avgEstim>=2?'adequate coverage':avgEstim>=1?'adjusted coverage, monitor':'insufficient coverage vs. NPL'):(avgEstim>=3?'cobertura óptima del sistema':avgEstim>=2?'cobertura adecuada':avgEstim>=1?'cobertura ajustada, monitorear':'cobertura insuficiente ante mora'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgEstim,2)}x</strong> — ${estimLbl}</div>`; }
+  if(avgEstim!=null){ var estimLbl=en?(avgEstim>=3?'satisfactory system coverage':avgEstim>=2?'adequate coverage':avgEstim>=1?'adjusted coverage, monitor':'insufficient coverage vs. NPL'):(avgEstim>=3?'cobertura satisfactoria del sistema':avgEstim>=2?'cobertura adecuada':avgEstim>=1?'cobertura ajustada, monitorear':'cobertura insuficiente ante mora'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgEstim,2)}x</strong> — ${estimLbl}</div>`; }
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'⑤ ROA · Weight 10%':'⑤ ROA · Peso 10%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on assets. Optimal: ≥1.5% · Normal: 0.8–1.5% · Caution: 0.3–0.8% · Low: <0.3%':'Rentabilidad sobre activos. Óptimo: ≥1.5% · Normal: 0.8–1.5% · Cautela: 0.3–0.8% · Bajo: &lt;0.3%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on assets. Satisfactory: ≥1.5% · Normal: 0.8–1.5% · Under Observation: 0.3–0.8% · Low: <0.3%':'Rentabilidad sobre activos. Satisfactorio: ≥1.5% · Normal: 0.8–1.5% · Observación: 0.3–0.8% · Bajo: &lt;0.3%'}</div>`;
   if(topROA) h+=`<div class="note note-g">${en?'Highest ROA':'Mayor ROA'}: <strong>${topROA.Entidad}</strong> ${fmt(topROA.ROA,2)}</div>`;
   if(botROA){ var brClass=botROA.ROA<0.3?' note-w':''; h+=`<div class="note${brClass}">${en?'Lowest ROA':'Menor ROA'}: <strong>${botROA.Entidad}</strong> ${fmt(botROA.ROA,2)}</div>`; }
-  if(avgROA!=null){ var roaLbl=en?(avgROA>=1.5?'optimal profitability':avgROA>=0.8?'normal profitability':avgROA>=0.3?'low profitability':'very low profitability'):(avgROA>=1.5?'rentabilidad óptima':avgROA>=0.8?'rentabilidad normal':avgROA>=0.3?'rentabilidad baja':'rentabilidad muy baja'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROA,2)}</strong> — ${roaLbl}</div>`; }
+  if(avgROA!=null){ var roaLbl=en?(avgROA>=1.5?'satisfactory profitability':avgROA>=0.8?'normal profitability':avgROA>=0.3?'low profitability':'very low profitability'):(avgROA>=1.5?'rentabilidad satisfactoria':avgROA>=0.8?'rentabilidad normal':avgROA>=0.3?'rentabilidad baja':'rentabilidad muy baja'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROA,2)}</strong> — ${roaLbl}</div>`; }
 
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'⑥ Loans / Deposits · Weight 5%':'⑥ Cartera / Depósitos · Peso 5%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Relative liquidity. Optimal: ≤80% · Normal: 80–95% · Caution: 95–125% · Risk: >125%':'Liquidez relativa. Óptimo: ≤80% · Normal: 80–95% · Cautela: 95–125% · Riesgo: &gt;125%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Relative liquidity. Satisfactory: ≤80% · Normal: 80–95% · Under Observation: 95–125% · Risk: >125%':'Liquidez relativa. Satisfactorio: ≤80% · Normal: 80–95% · Observación: 95–125% · Riesgo: &gt;125%'}</div>`;
   if(botCart) h+=`<div class="note note-g">${en?'Lowest ratio (most liquid)':'Menor ratio (más líquido)'}: <strong>${botCart.Entidad}</strong> ${botCart.CartSobreDep.toFixed(1)}%</div>`;
   if(topCart){ var tcClass=topCart.CartSobreDep>125?' note-w':''; h+=`<div class="note${tcClass}">${en?'Highest ratio':'Mayor ratio'}: <strong>${topCart.Entidad}</strong> ${topCart.CartSobreDep.toFixed(1)}%${topCart.CartSobreDep>125?(en?' · risk zone':' · zona de riesgo'):''}</div>`; }
   if(avgCart!=null){ var cartLbl=en?(avgCart<=80?'liquid system':avgCart<=95?'adequate liquidity':avgCart<=125?'adjusted liquidity':'liquidity risk'):(avgCart<=80?'sistema líquido':avgCart<=95?'liquidez adecuada':avgCart<=125?'liquidez ajustada':'riesgo de liquidez'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${avgCart.toFixed(1)}%</strong> — ${cartLbl}</div>`; }
@@ -886,7 +924,7 @@ function renderNotesH3(){
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${es?'What is the Banking DuPont?':'¿Qué es el DuPont Bancario?'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864">${es?'The DuPont tree breaks down <strong>ROE</strong> (return on equity) into its components to understand <em>where</em> profitability comes from. It identifies whether a bank is profitable due to cost productivity, spread, asset intensity, or leverage.':'El árbol DuPont descompone el <strong>ROE</strong> (rentabilidad sobre patrimonio) en sus componentes para entender <em>de dónde viene</em> la ganancia. Permite identificar si un banco es rentable por productividad del gasto, por spread, por intensidad de activos o por apalancamiento.'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600;margin-top:4px">${es?'① ROE — Return on Equity':'① ROE — Retorno sobre Patrimonio'}</div>`;
-  h+=`<div class="note note-g">${es?'Measures how much the bank earns per dollar of equity. <strong>ROE = ROA × Leverage.</strong> An ROE of 13% means ₡13 earned per ₡100 invested. Higher is better. <strong>>13% Optimal · >8% Normal · ≤8% Low.</strong>':'Mide cuánto gana el banco por cada colón de los dueños. <strong>ROE = ROA × Apalancamiento.</strong> Un ROE de 13% significa que por cada ₡100 invertidos se generan ₡13. Mayor = mejor. <strong>>13% Óptimo · >8% Normal · ≤8% Bajo.</strong>'}</div>`;
+  h+=`<div class="note note-g">${es?'Measures how much the bank earns per dollar of equity. <strong>ROE = ROA × Leverage.</strong> An ROE of 13% means ₡13 earned per ₡100 invested. Higher is better. <strong>>13% Satisfactory · >8% Normal · ≤8% Low.</strong>':'Mide cuánto gana el banco por cada colón de los dueños. <strong>ROE = ROA × Apalancamiento.</strong> Un ROE de 13% significa que por cada ₡100 invertidos se generan ₡13. Mayor = mejor. <strong>>13% Satisfactorio · >8% Normal · ≤8% Bajo.</strong>'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600;margin-top:4px">${es?'② ROA — Return on Assets':'② ROA — Retorno sobre Activos'}</div>`;
   h+=`<div class="note">${es?'How much the bank generates per dollar under management. <strong>ROA = Margin/Prod.Assets × Asset Intensity × Cost Productivity.</strong> ROA >0.8% is healthy. Above 1.5% is excellent.':'Cuánto genera el banco por cada colón que administra. <strong>ROA = Margen/Activo Prod × Intensidad Activo × Productividad Gasto.</strong> Un ROA &gt;0.8% es saludable. Valores sobre 1.5% son excelentes.'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600;margin-top:4px">${es?'③ Leverage':'③ Apalancamiento'}</div>`;
@@ -916,42 +954,49 @@ function renderNotesH2Ref(){
   var avgSuf=avg(cur,'SuficienciaP'), avgMora=avg(cur,'IND_Morosidad');
   var avgROE2=avg(cur,'ROE'), avgEstim=avg(cur,'IND_PctEstimaciones'), avgROA=avg(cur,'ROA'), avgCart=avg(cur,'CartSobreDep');
   var h='';
-  h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${en?'Financial Soundness Score (FSI)':'Score de Solidez Financiera (FSI)'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${en?'Comparative Financial Health Score (FSI)':'Score Salud Financiera Comparativa (FSI)'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864">${en?'Composite index 0–100. Weights: ROE 25% · Capital Adequacy 30% · NPL Ratio 20% · Provisions 10% · ROA 10% · Loans/Deposits 5%':'Índice compuesto 0–100. Pesos: ROE 25% · Suficiencia Pat. 30% · Morosidad 20% · Estimaciones 10% · ROA 10% · Cartera/Dep 5%'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'① ROE · Weight 25%':'① ROE · Peso 25%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on equity. Optimal: >13% · Normal: 8–13% · Low: 0–8% · Negative: <0%':'Retorno sobre patrimonio. Óptimo: >13% · Normal: 8–13% · Bajo: 0–8% · Negativo: <0%'}</div>`;
-  if(avgROE2!=null){ var roeLbl2=en?(avgROE2>=13?'optimal profitability':avgROE2>=8?'normal profitability':avgROE2>=0?'low profitability':'negative — concern'):(avgROE2>=13?'rentabilidad óptima':avgROE2>=8?'rentabilidad normal':avgROE2>=0?'rentabilidad baja':'negativo — señal de alerta'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROE2,2)}</strong> — ${roeLbl2}</div>`; }
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Return on equity. Optimal: >13% · Normal: 8–13% · Low: 0–8% · Negative: <0%':'Retorno sobre patrimonio. Satisfactorio: >13% · Normal: 8–13% · Bajo: 0–8% · Negativo: <0%'}</div>`;
+  if(avgROE2!=null){ var roeLbl2=en?(avgROE2>=13?'satisfactory profitability':avgROE2>=8?'normal profitability':avgROE2>=0?'low profitability':'negative — under observation'):(avgROE2>=13?'rentabilidad satisfactoria':avgROE2>=8?'rentabilidad normal':avgROE2>=0?'rentabilidad baja':'negativo — en observación'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgROE2,2)}</strong> — ${roeLbl2}</div>`; }
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'② Capital Adequacy · Weight 30%':'② Suficiencia Patrimonial · Peso 30%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'SUGEF minimum: 10% · Caution: 10–12% · Good: 12–14% · Optimal: ≥14%':'Mínimo SUGEF: 10% · Cautela: 10–12% · Bueno: 12–14% · Óptimo: ≥14%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'SUGEF minimum: 10% · Under Observation: 10–12% · Good: 12–14% · Satisfactory: ≥14%':'Mínimo SUGEF: 10% · Observación: 10–12% · Bueno: 12–14% · Satisfactorio: ≥14%'}</div>`;
   if(topSuf) h+=`<div class="note note-g">${en?'Highest':'Mayor'}: <strong>${topSuf.Entidad}</strong> ${fmt(topSuf.SuficienciaP)}</div>`;
-  if(botSuf){ var bsClass=botSuf.SuficienciaP<12?' note-w':''; h+=`<div class="note${bsClass}">${en?'Lowest':'Menor'}: <strong>${botSuf.Entidad}</strong> ${fmt(botSuf.SuficienciaP)}${botSuf.SuficienciaP<12?(en?' · caution zone':' · zona precaución'):''}</div>`; }
+  if(botSuf){ var bsClass=botSuf.SuficienciaP<12?' note-w':''; h+=`<div class="note${bsClass}">${en?'Lowest':'Menor'}: <strong>${botSuf.Entidad}</strong> ${fmt(botSuf.SuficienciaP)}${botSuf.SuficienciaP<12?(en?' · caution zone':' · zona en observación'):''}</div>`; }
   if(avgSuf!=null){ var sfLbl=en?(avgSuf>=14?'well-capitalized system':avgSuf>=12?'adequate capitalization':'limited capital buffer'):(avgSuf>=14?'sistema bien capitalizado':avgSuf>=12?'capitalización adecuada':'colchón de capital limitado'); h+=`<div class="note">${en?'Weighted avg.':'Promedio ponderado'}: <strong>${fmt(avgSuf)}</strong> — ${sfLbl}</div>`; }
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'③ NPL Ratio · Weight 20%':'③ Morosidad · Peso 20%'}</div>`;
-  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Optimal: <1.5% · Normal: 1.5–2.5% · Caution: 2.5–3% · Alert: >3%':'Óptimo: &lt;1.5% · Normal: 1.5–2.5% · Cautela: 2.5–3% · Alerta: &gt;3%'}</div>`;
+  h+=`<div class="note" style="border-left-color:#1F3864;font-style:italic">${en?'Satisfactory: <1.5% · Normal: 1.5–2.5% · Under Observation: 2.5–3% · Out of Range: >3%':'Satisfactorio: &lt;1.5% · Normal: 1.5–2.5% · Observación: 2.5–3% · Fuera de Rango: &gt;3%'}</div>`;
   if(topMora){ var tmClass=(topMora.IND_Morosidad||0)>3?' note-a':' note-w'; h+=`<div class="note${tmClass}">${en?'Highest NPL':'Mayor mora'}: <strong>${topMora.Entidad}</strong> ${fmt(topMora.IND_Morosidad)}</div>`; }
-  if(avgMora!=null){ var moraLbl=en?(avgMora<=1.5?'healthy portfolio':avgMora<=2.5?'normal quality':avgMora<=3?'caution':'systemic alert'):(avgMora<=1.5?'cartera sana':avgMora<=2.5?'calidad normal':avgMora<=3?'precaución':'alerta sistémica'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgMora)}</strong> — ${moraLbl}</div>`; }
+  if(avgMora!=null){ var moraLbl=en?(avgMora<=1.5?'healthy portfolio':avgMora<=2.5?'normal quality':avgMora<=3?'caution':'out of range systemically'):(avgMora<=1.5?'cartera sana':avgMora<=2.5?'calidad normal':avgMora<=3?'en observación':'fuera de rango sistémico'); h+=`<div class="note">${en?'System avg.':'Promedio sistema'}: <strong>${fmt(avgMora)}</strong> — ${moraLbl}</div>`; }
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:600">${en?'④ Provisions · 10% · ⑤ ROA · 10% · ⑥ Loans/Dep · 5%':'④ Estimaciones · Peso 10% · ⑤ ROA · Peso 10% · ⑥ Cartera/Dep · Peso 5%'}</div>`;
-  if(avgEstim!=null){ var estimLbl=en?(avgEstim>=3?'optimal coverage':avgEstim>=2?'adequate coverage':avgEstim>=1?'adjusted coverage':'insufficient coverage'):(avgEstim>=3?'cobertura óptima':avgEstim>=2?'cobertura adecuada':avgEstim>=1?'cobertura ajustada':'cobertura insuficiente'); h+=`<div class="note">${en?'Avg. provisions':'Estimaciones promedio'}: <strong>${fmt(avgEstim,2)}x</strong> — ${estimLbl}</div>`; }
-  if(avgROA!=null){ var roaLbl=en?(avgROA>=1.5?'optimal profitability':avgROA>=0.8?'normal profitability':'low profitability'):(avgROA>=1.5?'rentabilidad óptima':avgROA>=0.8?'rentabilidad normal':'rentabilidad baja'); h+=`<div class="note">${en?'Avg. ROA':'ROA promedio'}: <strong>${fmt(avgROA,2)}</strong> — ${roaLbl}</div>`; }
+  if(avgEstim!=null){ var estimLbl=en?(avgEstim>=3?'satisfactory coverage':avgEstim>=2?'adequate coverage':avgEstim>=1?'adjusted coverage':'insufficient coverage'):(avgEstim>=3?'cobertura satisfactoria':avgEstim>=2?'cobertura adecuada':avgEstim>=1?'cobertura ajustada':'cobertura insuficiente'); h+=`<div class="note">${en?'Avg. provisions':'Estimaciones promedio'}: <strong>${fmt(avgEstim,2)}x</strong> — ${estimLbl}</div>`; }
+  if(avgROA!=null){ var roaLbl=en?(avgROA>=1.5?'satisfactory profitability':avgROA>=0.8?'normal profitability':'low profitability'):(avgROA>=1.5?'rentabilidad satisfactoria':avgROA>=0.8?'rentabilidad normal':'rentabilidad baja'); h+=`<div class="note">${en?'Avg. ROA':'ROA promedio'}: <strong>${fmt(avgROA,2)}</strong> — ${roaLbl}</div>`; }
   if(avgCart!=null){ var cartLbl=en?(avgCart<=80?'liquid system':avgCart<=95?'adequate liquidity':avgCart<=125?'adjusted liquidity':'liquidity risk'):(avgCart<=80?'sistema líquido':avgCart<=95?'liquidez adecuada':avgCart<=125?'liquidez ajustada':'riesgo de liquidez'); h+=`<div class="note">${en?'Avg. Loans/Dep':'Cartera/Dep promedio'}: <strong>${avgCart.toFixed(1)}%</strong> — ${cartLbl}</div>`; }
   el.innerHTML=h;
 }
 
 // ── Glosario ─────────────────────────────────────────────────────
+function renderDisclaimer(){
+  var el=document.getElementById('disclaimer-label');
+  var et=document.getElementById('disclaimer-text');
+  if(el) el.textContent=t('disclaimer_label');
+  if(et) et.textContent=t('disclaimer_text');
+}
+
 function renderGlosario(){
   var el=document.getElementById('notes-glosario');
   if(!el) return;
   const en=LANG==='en';
   var h='';
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px">${en?'Profitability Indicators':'Indicadores de Rentabilidad'}</div>`;
-  h+=`<div class="note note-g"><strong>ROE</strong> — ${en?'Return on Equity. Measures how much profit the bank generates per dollar of equity. Formula: Net Income / Avg. Equity. <strong>>13% Optimal · >8% Normal · ≤8% Low.</strong>':'Retorno sobre Patrimonio. Mide la ganancia que genera el banco por cada colón que pertenece a sus dueños. Fórmula: Utilidad Neta / Patrimonio Promedio. <strong>>13% Óptimo · >8% Normal · ≤8% Bajo.</strong>'}</div>`;
+  h+=`<div class="note note-g"><strong>ROE</strong> — ${en?'Return on Equity. Measures how much profit the bank generates per dollar of equity. Formula: Net Income / Avg. Equity. <strong>>13% Satisfactory · >8% Normal · ≤8% Low.</strong>':'Retorno sobre Patrimonio. Mide la ganancia que genera el banco por cada colón que pertenece a sus dueños. Fórmula: Utilidad Neta / Patrimonio Promedio. <strong>>13% Satisfactorio · >8% Normal · ≤8% Bajo.</strong>'}</div>`;
   h+=`<div class="note"><strong>ROA</strong> — ${en?'Return on Assets. How much the bank generates per dollar under management. Formula: Net Income / Avg. Assets. Healthy: >0.8%.':'Retorno sobre Activos. Cuánto genera el banco por cada colón que administra, independientemente de cómo se financió. Fórmula: Utilidad Neta / Activo Promedio. Saludable: &gt;0.8%.'}</div>`;
   h+=`<div class="note"><strong>Spread</strong> — ${en?'Net Interest Margin. Difference between the lending rate (Lending Rate) and the deposit rate (Deposit Rate). Core business of banking.':'Margen de Intermediación Financiera. Diferencia entre la tasa que cobra por prestar (Tasa Activa) y la que paga por captar (Tasa Pasiva). Es el negocio central de la banca.'}</div>`;
   h+=`<div class="note"><strong>${en?'Leverage':'Apalancamiento'}</strong> — ${en?'Total Assets / Equity. How many times the bank operates with assets exceeding its own capital. Amplifies ROE when ROA is positive; amplifies losses when it falls.':'Activo Total / Patrimonio. Indica cuántas veces el banco opera con activos que superan su capital propio. Amplifica ROE cuando el ROA es positivo; amplifica pérdidas si cae.'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px;margin-top:6px">${en?'Quality Indicators':'Indicadores de Calidad'}</div>`;
   h+=`<div class="note note-w"><strong>${en?'NPL Ratio':'Morosidad'}</strong> — ${en?'Loans past due >90 days + legal collection / Total loan portfolio. SUGEF regulatory limit: ≤3%. Credit risk signal.':'Cartera con atraso &gt;90 días + cobro judicial / Cartera total. Límite regulatorio SUGEF: ≤3%. Señal de riesgo crediticio.'}</div>`;
   h+=`<div class="note"><strong>${en?'Capital Adequacy':'Suficiencia Patrimonial'}</strong> — ${en?'Regulatory capital / Risk-weighted assets. SUGEF minimum: 10%. Indicates capacity to absorb unexpected losses.':'Capital regulatorio / Activos ponderados por riesgo. Mínimo SUGEF: 10%. Indica capacidad de absorber pérdidas inesperadas.'}</div>`;
-  h+=`<div class="note"><strong>${en?'Loan Loss Provisions':'Estimaciones'}</strong> — ${en?'Accumulated provisions / NPL portfolio >90d. Higher value = greater loss coverage. Optimal: ≥3x.':'Provisiones acumuladas / Cartera morosa &gt;90d. Mayor valor = mayor cobertura ante pérdidas. Óptimo: ≥3x.'}</div>`;
+  h+=`<div class="note"><strong>${en?'Loan Loss Provisions':'Estimaciones'}</strong> — ${en?'Accumulated provisions / NPL portfolio >90d. Higher value = greater loss coverage. Satisfactory: ≥3x.':'Provisiones acumuladas / Cartera morosa &gt;90d. Mayor valor = mayor cobertura ante pérdidas. Satisfactorio: ≥3x.'}</div>`;
   h+=`<div class="note"><strong>${en?'Equity Commitment':'Compromiso Patrimonial'}</strong> — ${en?'Equity adjustment considering problem assets. A negative value (between 0 and -10%) is positive: equity is not compromised by deteriorated portfolio.':'Ajuste al patrimonio considerando activos problemáticos. Valor negativo (entre 0 y -10%) es positivo: indica que el patrimonio no está comprometido por cartera deteriorada.'}</div>`;
   h+=`<div class="note" style="border-left-color:#1F3864;font-weight:700;font-size:8.5px;margin-top:6px">${en?'Liquidity & Productivity Indicators':'Indicadores de Liquidez y Productividad'}</div>`;
   h+=`<div class="note"><strong>${en?'Loans / Deposits':'Cartera / Depósitos'}</strong> — ${en?'Measures what portion of captured deposits is lent out. High ratio (>125%) may indicate liquidity pressure; very low may indicate idle capacity.':'Mide qué porción de los depósitos captados se presta. Ratio elevado (&gt;125%) puede indicar presión de liquidez; muy bajo puede indicar capacidad ociosa.'}</div>`;
@@ -1326,7 +1371,8 @@ function renderScorecard(){
   const data=pBancos().map(function(d){return Object.assign({},d,{sc:scoreFSI(d)});}).filter(function(d){return d.sc!=null;}).sort(function(a,b){return b.sc-a.sc;});
   document.getElementById('scorecard-list').innerHTML=data.map(function(d,i){
     var sc=d.sc,cat=scoreCat(sc);
-    var bc=cat===t('score_optimal')?'#2E75B6':cat===t('score_normal')?'#BDD7EE':cat===t('score_caution')?'#EF9F27':'#E24B4A';
+    // bc = color de barra (saturado), tc = color de texto, pillBg = fondo del pill
+    var bc=cat===t('score_optimal')?'#4CAF72':cat===t('score_normal')?'#2E75B6':cat===t('score_caution')?'#EF9F27':'#E24B4A';
     var tc=cat===t('score_optimal')?'#27500A':cat===t('score_normal')?'#2E75B6':cat===t('score_caution')?'#856404':'#842029';
     var roe2=d.ROE,suf=d.SuficienciaP,mora=d.IND_Morosidad,estim=d.IND_PctEstimaciones,roa=d.ROA,cart=d.CartSobreDep;
     var roePts2=roe2!=null?(roe2>=13?4:roe2>=8?3:roe2>=0?2:1):null;
@@ -1355,13 +1401,21 @@ function renderScorecard(){
     if(roaPts!=null)   det+='<div class="sc-det-row"><span>ROA <b>10%</b></span><span>'+fmt(roa,2)+'&nbsp;<b>'+roaLvl+'</b>&nbsp;+'+roaAp+'pts</span></div>';
     if(cartPts!=null)  det+='<div class="sc-det-row"><span>'+t('opt_cartera')+'/Dep <b>5%</b></span><span>'+cart.toFixed(1)+'%&nbsp;<b>'+cartLvl+'</b>&nbsp;+'+cartAp+'pts</span></div>';
     det+='</div>';
+    var pillBg=cat===t('score_optimal')?'#D8EED4':cat===t('score_normal')?'#EEF4FA':cat===t('score_caution')?'#FFF3CD':'#FDDEDE';
+    var pillCls=cat===t('score_optimal')?'b-opt':cat===t('score_normal')?'b-nor':cat===t('score_caution')?'b-pre':'b-inc';
     return '<div class="sc-row sc-expandable" data-ent="'+d.Entidad+'" onclick="this.classList.toggle(\'sc-open\')" ondblclick="setSelectedBank(\''+d.Entidad+'\')" title="Doble click para resaltar">'
-      +'<span style="font-size:9.5px;font-weight:700;color:'+tc+'">'+(i+1)+'</span>'
-      +'<div><div style="font-size:9.5px;color:#1F3864;font-weight:700;margin-bottom:2px">'+d.Entidad+' <span style="font-size:8px;color:#9AB8D4;font-weight:400">&#9660;</span></div>'
+      +'<div class="sc-header-row">'
+      +'<span class="sc-rank" style="color:'+tc+'">'+(i+1)+'</span>'
+      +'<span class="sc-name">'+d.Entidad+'</span>'
+      +'<span class="sc-sep">·</span>'
+      +'<span class="sc-score-num" style="color:'+tc+'">'+sc+'</span>'
+      +'<span class="sc-sep">·</span>'
+      +'<span class="sc-cat-pill '+pillCls+'" style="background:'+pillBg+';color:'+tc+'">'+cat+'</span>'
+      +'<span class="sc-expand-icon">&#9660;</span>'
+      +'</div>'
       +'<div class="sc-track"><div class="sc-fill" style="width:'+sc+'%;background:'+bc+'"></div></div>'
-      +det+'</div>'
-      +'<span style="text-align:right;font-weight:700;color:'+tc+';font-size:11px">'+sc+'</span>'
-      +'<div>'+scoreBadge(sc)+'</div></div>';
+      +det
+      +'</div>';
   }).join('');
   applyScorecardHighlight();
   applyScCategoryFilter();
@@ -1409,24 +1463,24 @@ function renderDupont(){
 
   // DuPont — HTML div rows, fills space properly
   function box(lbl,val,leg,col,tc){
-    return '<div style="background:'+col+';border:0.7px solid #9AB8D4;border-radius:5px;padding:4px 6px;text-align:center;min-width:80px;flex:1">'
-      +'<div style="font-size:9px;font-weight:700;color:'+tc+';opacity:.8;margin-bottom:1px">'+lbl+'</div>'
-      +'<div style="font-size:15px;font-weight:700;color:'+tc+'">'+val+'</div>'
-      +'<div style="font-size:8px;color:'+tc+';opacity:.6;margin-top:1px">'+leg+'</div>'
+    return '<div style="background:'+col+';border:0.7px solid #9AB8D4;border-radius:5px;padding:3px 6px;text-align:center;min-width:80px;flex:1">'
+      +'<div style="font-size:11px;font-weight:700;color:'+tc+';opacity:.8;margin-bottom:0">'+lbl+'</div>'
+      +'<div style="font-size:17px;font-weight:700;color:'+tc+';line-height:1.1">'+val+'</div>'
+      +'<div style="font-size:9px;color:'+tc+';opacity:.7;margin-top:1px">'+leg+'</div>'
       +'</div>';
   }
   function opEl(sym){
-    return '<div style="font-size:14px;font-weight:700;color:#4A7AB5;padding:0 3px;display:flex;align-items:center;flex-shrink:0">'+sym+'</div>';
+    return '<div style="font-size:17px;font-weight:700;color:#4A7AB5;padding:0 4px;display:flex;align-items:center;flex-shrink:0">'+sym+'</div>';
   }
   function row(items){
-    return '<div style="display:flex;align-items:stretch;gap:3px;margin-bottom:6px">'+items+'</div>';
+    return '<div style="display:flex;align-items:stretch;gap:3px;margin-bottom:4px">'+items+'</div>';
   }
   // Componente: Util/MargenFin — fracción del margen que llega a utilidad
   var utilMargNum=(d.R12M_Utilidad&&d.R12M_MargenFin)?d.R12M_Utilidad/d.R12M_MargenFin*100:null;
   var utilMarg=utilMargNum!=null?utilMargNum.toFixed(1)+'%':'—';
 
   function note(txt,grow){
-    return '<div style="font-size:8px;color:#1A3A5C;background:#E8F2FB;border-left:2px solid #5A8FC2;border-radius:0 3px 3px 0;padding:3px 7px;margin:3px 0 5px;line-height:1.5'+(grow?';flex:1':'')+'">'+txt+'</div>';
+    return '<div style="font-size:10px;color:#1A3A5C;background:#E8F2FB;border-left:2px solid #5A8FC2;border-radius:0 3px 3px 0;padding:3px 7px;margin:3px 0 5px;line-height:1.5'+(grow?';flex:1':'')+'">'+txt+'</div>';
   }
 
   var html='<div style="display:flex;flex-direction:column;gap:0">';
@@ -1497,7 +1551,7 @@ function renderDupont(){
 
   var ana='<div class="dp-analysis-title">'+(en?'Analysis: ':'Análisis: ')+entidad+'</div>';
   ana+=arow('ROE',roe,null,'#1F3864');
-  ana+='<div class="dp-analysis-row"><span>'+(en?'ROE vs System':'ROE vs Sistema')+'</span><span style="font-size:9px;color:'+roeColor+'">'+roeLbl+(sfnROE!=null?' (SFN: '+sfnROE.toFixed(2)+'%)':'')+'</span></div>';
+  ana+='<div class="dp-analysis-row"><span>'+(en?'ROE vs System':'ROE vs Sistema')+'</span><span style="color:'+roeColor+'">'+roeLbl+(sfnROE!=null?' (SFN: '+sfnROE.toFixed(2)+'%)':'')+'</span></div>';
   ana+=arow('ROA',roa,roaLbl);
   ana+=arow('Spread',spread,spreadLbl);
   ana+=arow(en?'Margin/Assets':'Margen/Activo',msA);
@@ -1505,9 +1559,7 @@ function renderDupont(){
   ana+=arow(en?'Leverage':'Apalancamiento',apal,apalLbl);
   ana+=arow(en?'Prod.Assets/Total':'Activo Prod/Total',intProd);
   ana+=arow(en?'Loans/Deposits':'Cartera/Depósitos',cartDep);
-  ana+='<div class="dp-insight">'+drv1+'</div>';
-  ana+='<div class="dp-insight">'+drv2+'</div>';
-  ana+='<div class="dp-insight">'+drv3+'</div>';
+  ana+='<div class="dp-insight-combined">'+drv1+' '+drv2+' '+drv3+'</div>';
 
   // Guía de lectura compacta
   ana+='<div style="margin-top:4px;border-top:.5px solid #D6E4F0;padding-top:4px">';
@@ -1749,7 +1801,7 @@ function switchTab(i){
   document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));
   document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',i===j));
   if(i===1){renderScorecard();renderBullet();renderHeatmap();renderNotesH2();renderDupont();}
-  if(i===2){renderNotesH3();renderNotesH2Ref();renderGlosario();}
+  if(i===2){renderNotesH3();renderNotesH2Ref();renderGlosario();renderDisclaimer();}
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
@@ -1765,6 +1817,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('sel-sector').onchange=e=>{curSec=e.target.value;renderAll();};
   document.getElementById('inp-tc').onchange=e=>{TC=+e.target.value||467;renderAll();};
   renderAll();
+  renderDisclaimer();
   initLegendClicks();
 });
 </script>
